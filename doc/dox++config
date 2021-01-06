@@ -1,0 +1,39 @@
+# dox++ configuration file for DIPlib
+[clang]
+compiler flags = -std=c++14 -DDIP_CONFIG_FAKE_DOCUMENTATION
+include directories = ../include/ /Applications/MATLAB_R2017a.app/extern/include/ /usr/local/include/opencv4/ /usr/local/include/
+
+[log]
+level = info
+
+[input]
+root directory = ../include/
+header files = ../include/*.h ../include/diplib/library/*.h ../include/diplib/*.h ../include/diplib/viewer/*.h
+markdown files = src/*.md src/*/*.md
+tab size = 3
+
+[json]
+filename = diplib_docs.json
+use typewriter font = yes
+formatting = readable
+
+[project]
+name = DIPlib
+brief = a library for quantitative image analysis
+url = 
+logo = 
+
+[html]
+output directory = html
+document private members = yes
+document protected members = yes
+document undocumented members = no
+modify include statement = def modify_include_statement(id): return 'file--diplib-h' if id.startswith('file--diplib--library--') else id
+theme color = #22272e
+favicon = DIP_logo_32.png
+stylesheets = m.css/css/m-dip+documentation.compiled.css
+templates = 
+extra files = 
+html header = 
+page header = 
+fine print = [default]

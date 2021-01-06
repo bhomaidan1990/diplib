@@ -8,3 +8,5 @@ dipimage/private/*.jar
 *~
 *.orig
 examples/python/.ipynb_checkpoints
+doc/diplib_docs.json
+doc/html/

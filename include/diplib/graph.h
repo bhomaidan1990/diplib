@@ -33,7 +33,6 @@ namespace dip {
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 /// \brief A non-directed, edge-weighted graph.
@@ -48,9 +47,12 @@ namespace dip {
 /// is the vertex index.
 class DIP_NO_EXPORT Graph {
    public:
-      using VertexIndex = dip::uint;   ///< Type for indices to vertices
-      using EdgeIndex = dip::uint;     ///< Type for indices to edges
-      using EdgeList = std::vector< EdgeIndex >;   ///< Type for list of edge indices
+      /// Type for indices to vertices
+      using VertexIndex = dip::uint;
+      /// Type for indices to edges
+      using EdgeIndex = dip::uint;
+      /// Type for list of edge indices
+      using EdgeList = std::vector< EdgeIndex >;
 
       /// \brief A vertex in the graph
       struct Vertex {
@@ -316,7 +318,7 @@ class DIP_NO_EXPORT LowestCommonAncestorSolver {
       std::shared_ptr< RangeMinimumQuery > rmq_; // Hidden implementation to avoid all that cruft in these headers...
 };
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

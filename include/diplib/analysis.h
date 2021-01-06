@@ -33,10 +33,9 @@
 namespace dip {
 
 
-/// \defgroup analysis Analysis
+/// \group analysis Analysis
 /// \brief Assorted analysis tools.
-/// \{
-
+/// \addtogroup
 
 /// \brief Finds the coordinates for all non-zero pixels in the scalar image `in`, optionally constrained to the pixels selected by `mask`.
 ///
@@ -1066,7 +1065,7 @@ DIP_EXPORT dfloat FractalDimension(
 );
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

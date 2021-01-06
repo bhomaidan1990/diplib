@@ -33,7 +33,6 @@ namespace dip {
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 /// \brief Represents a metric to be used to create a `dip::NeighborList`
@@ -223,9 +222,12 @@ class DIP_NO_EXPORT NeighborList {
       /// \brief Iterates over the neighbors in the `%NeighborList`.
       class Iterator {
          public:
-            using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-            using value_type = dfloat;             ///< The type that the iterator points at
-            using reference = value_type const&;   ///< The type you get when you dereference
+            /// Iterator category
+            using iterator_category = std::forward_iterator_tag;
+            /// The type that the iterator points at
+            using value_type = dfloat;
+            /// The type you get when you dereference
+            using reference = value_type const&;
             /// Default constructible, yields an invalid iterator.
             Iterator() = default;
             /// Swap
@@ -374,7 +376,7 @@ inline void swap( NeighborList::Iterator& v1, NeighborList::Iterator& v2 ) {
    v1.swap( v2 );
 }
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

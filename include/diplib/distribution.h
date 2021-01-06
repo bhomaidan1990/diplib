@@ -33,7 +33,6 @@ namespace dip {
 class DIP_NO_EXPORT Histogram;
 
 /// \addtogroup analysis
-/// \{
 
 
 /// \brief Holds probability density functions and other types of distribution
@@ -54,8 +53,10 @@ class DIP_NO_EXPORT Histogram;
 /// The `Sort` method applies a stable sort to restore the order.
 class DIP_NO_EXPORT Distribution {
    public:
-      using ValueType = dfloat;                    ///< Data type of values stored in container
-      using Container = std::vector< ValueType >;  ///< %Container used internally to store the data
+      /// Data type of values stored in container
+      using ValueType = dfloat;
+      /// Container used internally to store the data
+      using Container = std::vector< ValueType >;
 
       /// \brief One sample of a distribution.
       ///
@@ -159,11 +160,16 @@ class DIP_NO_EXPORT Distribution {
             friend class Distribution;
 
          public:
-            using iterator_category = std::random_access_iterator_tag; ///< %Iterator category
-            using value_type = Sample;           ///< The data type obtained when dereferencing the iterator
-            using difference_type = dip::sint;   ///< The type of difference between iterators
-            using reference = Sample&;           ///< The type of a reference to a sample
-            using pointer = Sample*;             ///< The type of a pointer to a sample
+            /// Iterator category
+            using iterator_category = std::random_access_iterator_tag;
+            /// The data type obtained when dereferencing the iterator
+            using value_type = Sample;
+            /// The type of difference between iterators
+            using difference_type = dip::sint;
+            /// The type of a reference to a sample
+            using reference = Sample&;
+            /// The type of a pointer to a sample
+            using pointer = Sample*;
 
             /// Not default constructable
             Iterator() = delete; // TODO: random access iterator requires default initialization
@@ -494,7 +500,7 @@ inline std::ostream& operator<<(
 }
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

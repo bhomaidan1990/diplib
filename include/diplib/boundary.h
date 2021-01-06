@@ -32,11 +32,10 @@
 namespace dip {
 
 
-/// \defgroup boundary Boundary
+/// \group boundary Boundary
 /// \ingroup infrastructure
 /// \brief Handling image boundary extension for filtering
-/// \{
-
+/// \addtogroup
 
 /// \brief Enumerates various ways of extending image data beyond its boundary.
 ///
@@ -77,7 +76,8 @@ enum class DIP_NO_EXPORT BoundaryCondition {
       ALREADY_EXPANDED
 };
 
-using BoundaryConditionArray = DimensionArray< BoundaryCondition >; ///< An array to hold boundary conditions.
+/// An array to hold boundary conditions.
+using BoundaryConditionArray = DimensionArray< BoundaryCondition >;
 
 
 /// \brief Convert a string to a boundary condition.
@@ -272,7 +272,7 @@ inline void ExtendRegion(
 }
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

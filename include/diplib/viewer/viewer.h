@@ -82,7 +82,7 @@ struct DIPVIEWER_NO_EXPORT ViewingOptions
   dip::IntegerArray split_;            ///< Split point between projections (pixels).
 
   // Display
-  dip::FloatArray zoom_;               ///< Zoom factor per dimension (from physical dimensions + user).
+  dip::FloatArray zoom_;               ///< \brief Zoom factor per dimension (from physical dimensions + user).
                                        ///< Also determines relative viewport sizes.
   dip::FloatArray origin_;             ///< Display origin for moving the image around.
   

@@ -34,7 +34,6 @@ namespace dip {
 
 
 /// \addtogroup measurement
-/// \{
 
 
 /// \brief Contains the various %Feret diameters as returned by `dip::ConvexHull::Feret` and `dip::ChainCode::Feret`.
@@ -313,7 +312,9 @@ inline Vertex< T > operator/( Vertex< T > v, dfloat n ) {
 /// \brief Encodes a bounding box in a 2D image by the top left and bottom right corners (both coordinates included in the box).
 template< typename T >
 struct DIP_NO_EXPORT BoundingBox {
-   using VertexType = Vertex< T >;  ///< The bounding box is defined in terms of two vertices
+   /// The bounding box is defined in terms of two vertices
+   using VertexType = Vertex< T >;
+
    VertexType topLeft;     ///< Top-left corner of the box
    VertexType bottomRight; ///< Bottom-right corner of the box
 
@@ -501,8 +502,9 @@ class DIP_NO_EXPORT ConvexHull; // Forward declaration
 
 /// \brief A polygon with floating-point vertices.
 struct DIP_NO_EXPORT Polygon {
-
+   /// Type used to store the vertices
    using Vertices = std::vector< VertexFloat >;
+
    Vertices vertices;  ///< The vertices
 
    /// \brief Returns the bounding box of the polygon
@@ -658,16 +660,11 @@ class DIP_NO_EXPORT ConvexHull {
       dip::Polygon polygon_;
 };
 
-/// \}
-
 // This function cannot be written inside the dip::Polygon class because it needs to know about the dip::ConvexHull
 // class, which in turn needs to know about the dip::Polygon class.
 inline dip::ConvexHull Polygon::ConvexHull() const {
    return dip::ConvexHull( *this );
 }
-
-/// \addtogroup measurement
-/// \{
 
 
 //
@@ -908,7 +905,7 @@ ChainCode DIP_EXPORT GetSingleChainCode(
       dip::uint connectivity = 2       ///< Connectivity, see \ref connectivity
 );
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

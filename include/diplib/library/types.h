@@ -49,7 +49,6 @@ namespace dip {
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 //
@@ -64,8 +63,10 @@ namespace dip {
 //       always false. I started with the uint because the standard library
 //       uses it for sizes of arrays, and sizeof() is unsigned also. Maybe
 //       better to cast these to sint?
-using sint = std::ptrdiff_t;  ///< An integer type to be used for strides and similar measures.
-using uint = std::size_t;  ///< An integer type to be used for sizes and the like.
+/// An integer type to be used for strides and similar measures.
+using sint = std::ptrdiff_t;
+/// An integer type to be used for sizes and the like.
+using uint = std::size_t;
 // ptrdiff_t and size_t are signed and unsigned integers of the same length as
 // pointers: 32 bits on 32-bit systems, 64 bits on 64-bit systems.
 // NOTE: We don't allow any integer to be larger than the max value of ptrdiff_t.
@@ -74,31 +75,44 @@ using uint = std::size_t;  ///< An integer type to be used for sizes and the lik
 constexpr dip::uint maxint = static_cast< dip::uint >( std::numeric_limits< dip::sint >::max() );
 
 
-/// \}
+/// \endgroup
 
 
 /// \addtogroup types
-/// \{
 
 
 //
 // Types for pixel values
 //
+/// Type for samples in a binary image. Can store 0 or 1. Occupies 1 byte.
 class DIP_NO_EXPORT bin;
-using uint8 = std::uint8_t;      ///< Type for samples in an 8-bit unsigned integer image; also to be used as single byte for pointer arithmetic
-using uint16 = std::uint16_t;    ///< Type for samples in a 16-bit unsigned integer image
-using uint32 = std::uint32_t;    ///< Type for samples in a 32-bit unsigned integer image
-using uint64 = std::uint64_t;    ///< Type for samples in a 64-bit unsigned integer image
-using sint8 = std::int8_t;       ///< Type for samples in an 8-bit signed integer image
-using sint16 = std::int16_t;     ///< Type for samples in a 16-bit signed integer image
-using sint32 = std::int32_t;     ///< Type for samples in a 32-bit signed integer image
-using sint64 = std::int64_t;     ///< Type for samples in a 64-bit signed integer image
-using sfloat = float;            ///< Type for samples in a 32-bit floating point (single-precision) image
-using dfloat = double;           ///< Type for samples in a 64-bit floating point (double-precision) image
-using scomplex = std::complex< sfloat >;   ///< Type for samples in a 64-bit complex-valued (single-precision) image
-using dcomplex = std::complex< dfloat >;   ///< Type for samples in a 128-bit complex-valued (double-precision) image
+/// Type for samples in an 8-bit unsigned integer image; also to be used as single byte for pointer arithmetic
+using uint8 = std::uint8_t;
+/// Type for samples in a 16-bit unsigned integer image
+using uint16 = std::uint16_t;
+/// Type for samples in a 32-bit unsigned integer image
+using uint32 = std::uint32_t;
+/// Type for samples in a 64-bit unsigned integer image
+using uint64 = std::uint64_t;
+/// Type for samples in an 8-bit signed integer image
+using sint8 = std::int8_t;
+/// Type for samples in a 16-bit signed integer image
+using sint16 = std::int16_t;
+/// Type for samples in a 32-bit signed integer image
+using sint32 = std::int32_t;
+/// Type for samples in a 64-bit signed integer image
+using sint64 = std::int64_t;
+/// Type for samples in a 32-bit floating point (single-precision) image
+using sfloat = float;
+/// Type for samples in a 64-bit floating point (double-precision) image
+using dfloat = double;
+/// Type for samples in a 64-bit complex-valued (single-precision) image
+using scomplex = std::complex< sfloat >;
+/// Type for samples in a 128-bit complex-valued (double-precision) image
+using dcomplex = std::complex< dfloat >;
 
-using LabelType = uint32;        ///< Type currently used for all labeled images, see `dip::DT_LABEL`.
+/// Type currently used for all labeled images, see `dip::DT_LABEL`.
+using LabelType = uint32;
 
 namespace detail {
 
@@ -179,7 +193,7 @@ bool PixelIsMinusInfinity( TPI value ) {
    return value == -std::numeric_limits< TPI >::infinity();
 }
 
-/// \brief Type for samples in a binary image. Can store 0 or 1. Occupies 1 byte.
+// dip::bin is documented above by its first declaration.
 class DIP_NO_EXPORT bin {
    // Binary data stored in a single byte (don't use bool for pixels, it has
    // implementation-defined size). We define this class for binary data so
@@ -336,24 +350,29 @@ template<> struct RealTypeCalculator< dcomplex > { using type = dfloat; };
 /// \brief The type to use in calculations when a real-valued type is needed. Matches `dip::DataType::SuggestReal`.
 template< typename T > using RealType = typename detail::RealTypeCalculator< std::remove_cv_t< std::remove_reference_t< T >>>::type;
 
-/// \}
+/// \endgroup
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 //
 // Array types
 //
 
-using IntegerArray = DimensionArray< dip::sint >;   ///< An array to hold strides, filter sizes, etc.
-using UnsignedArray = DimensionArray< dip::uint >;  ///< An array to hold dimensions, dimension lists, etc.
-using FloatArray = DimensionArray< dip::dfloat >;   ///< An array to hold filter parameters.
-using BooleanArray = DimensionArray< bool >;        ///< An array used as a dimension selector.
+/// An array to hold strides, filter sizes, etc.
+using IntegerArray = DimensionArray< dip::sint >;
+/// An array to hold dimensions, dimension lists, etc.
+using UnsignedArray = DimensionArray< dip::uint >;
+/// An array to hold filter parameters.
+using FloatArray = DimensionArray< dip::dfloat >;
+/// An array used as a dimension selector.
+using BooleanArray = DimensionArray< bool >;
 
-using CoordinateArray = std::vector< UnsignedArray >; ///< An array of pixel coordinates.
-using FloatCoordinateArray = std::vector< FloatArray >; ///< An array of subpixel coordinates.
+/// An array of pixel coordinates.
+using CoordinateArray = std::vector< UnsignedArray >;
+/// An array of subpixel coordinates.
+using FloatCoordinateArray = std::vector< FloatArray >;
 
 
 /// \brief Check the length of an array, and extend it if necessary and possible.
@@ -378,9 +397,12 @@ inline void ArrayUseParameter( DimensionArray< T >& array, dip::uint nDims, T de
 // Strings, used for parameters and other things
 //
 
-using String = std::string;                 ///< A string, used to specify an option
-using StringArray = std::vector< String >;  ///< An array of strings, used to specify an option per dimension
-using StringSet = std::set< String >;       ///< A collection of strings, used to specify multiple independent options
+/// A string, used to specify an option
+using String = std::string;
+/// An array of strings, used to specify an option per dimension
+using StringArray = std::vector< String >;
+/// A collection of strings, used to specify multiple independent options
+using StringSet = std::set< String >;
 
 /// \brief Translates a string input parameter that is meant as a boolean value.
 inline bool BooleanFromString( String const& input, String const& trueString, String const& falseString ) {
@@ -547,10 +569,14 @@ struct DIP_NO_EXPORT Range {
    /// An iterator for the range
    class Iterator {
       public:
-         using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-         using value_type = dip::uint;          ///< Type of value iterator references
-         using reference = dip::sint const&;    ///< Type of reference to value
-         using pointer = dip::sint const*;      ///< Type of pointer to value
+         /// Iterator category
+         using iterator_category = std::forward_iterator_tag;
+         /// Type of value iterator references
+         using value_type = dip::uint;
+         /// Type of reference to value
+         using reference = dip::sint const&;
+         /// Type of pointer to value
+         using pointer = dip::sint const*;
 
          /// Default constructor
          Iterator() = default;
@@ -660,6 +686,7 @@ constexpr Options< T > operator+( T a, Options< T > b ) noexcept {
    return b + a;
 }
 
+/// \macro DIP_DECLARE_OPTIONS(EnumType,OptionsType)
 /// \brief Declare a type used to pass enumerated options to a function or class.
 ///
 /// This macro is used as follows:
@@ -790,7 +817,7 @@ struct RegressionParameters {
    dfloat slope = 0.0;     ///< slope
 };
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

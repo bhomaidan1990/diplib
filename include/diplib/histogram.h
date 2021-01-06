@@ -35,9 +35,9 @@
 namespace dip {
 
 
-/// \defgroup histograms Histograms
+/// \group histograms Histograms
 /// \brief Histograms and related functionality.
-/// \{
+/// \addtogroup
 
 namespace detail {
 inline dip::sint FindBin( dfloat value, dfloat lowerBound, dfloat binSize, dip::uint nBins ) {
@@ -97,6 +97,7 @@ class DIP_NO_EXPORT Histogram {
          dfloat upperBound = 256.0;    ///< Upper bound for this dimension, corresponds to the upper bound of the last bin.
          dip::uint nBins = 256;        ///< Number of bins for this dimension.
          dfloat binSize = 1.0;         ///< Size of each bin for this dimension.
+         /// Which of the four values to compute based on the other three
          enum class Mode {
                COMPUTE_BINSIZE,
                COMPUTE_BINS,
@@ -882,7 +883,7 @@ DIP_EXPORT Distribution PerObjectHistogram(
 );
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

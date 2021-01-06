@@ -34,15 +34,14 @@
 namespace dip {
 
 
-/// \defgroup iterators Iterators
+/// \group iterators Iterators
 /// \ingroup infrastructure
 /// \brief Objects to iterate over images and image lines in different ways.
 ///
 /// See \ref using_iterators
 /// for a mini-tutorial on how to use each of the different iterator types. Next, read the documentation
 /// for the iterator you plan to use, to learn about additional options and possibilities.
-/// \{
-
+/// \addtogroup
 
 //
 // Line iterator, does 1D loop over the pixels in an image line
@@ -70,14 +69,18 @@ namespace dip {
 ///
 /// Note that when an image is stripped or reforged, all its iterators are invalidated.
 ///
-/// \see \ref using_iterators, ImageIterator, JointImageIterator, BresenhamLineIterator, SampleIterator
+/// \see using_iterators, ImageIterator, JointImageIterator, BresenhamLineIterator, SampleIterator
 template< typename T >
 class DIP_NO_EXPORT LineIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = T;               ///< The data type of the pixel, obtained when dereferencing the iterator
-      using reference = T&;               ///< The type of a reference to a pixel
-      using pointer = T*;                 ///< The type of a pointer to a pixel
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The data type of the pixel, obtained when dereferencing the iterator
+      using value_type = T;
+      /// The type of a reference to a pixel
+      using reference = T&;
+      /// The type of a pointer to a pixel
+      using pointer = T*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       LineIterator() = default;
@@ -326,14 +329,18 @@ using ConstLineIterator = LineIterator< T const >;
 ///
 /// Note that when an image is stripped or reforged, all its iterators are invalidated.
 ///
-/// \see \ref using_iterators, JointImageIterator, LineIterator, SampleIterator, GenericImageIterator
+/// \see using_iterators, JointImageIterator, LineIterator, SampleIterator, GenericImageIterator
 template< typename T >
 class DIP_NO_EXPORT ImageIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = T;               ///< The data type of the sample, obtained when dereferencing the iterator
-      using reference = T&;               ///< The type of a reference to a sample
-      using pointer = T*;                 ///< The type of a pointer to a pixel
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The data type of the sample, obtained when dereferencing the iterator
+      using value_type = T;
+      /// The type of a reference to a sample
+      using reference = T&;
+      /// The type of a pointer to a pixel
+      using pointer = T*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       ImageIterator() : procDim_( std::numeric_limits< dip::uint >::max() ) {}
@@ -700,14 +707,18 @@ inline void TestDataType<>( const ImageConstRefArray::const_pointer ) {} // End 
 ///
 /// Note that when an image is stripped or reforged, all its iterators are invalidated.
 ///
-/// \see \ref using_iterators, ImageIterator, LineIterator, SampleIterator, GenericJointImageIterator
+/// \see using_iterators, ImageIterator, LineIterator, SampleIterator, GenericJointImageIterator
 template< typename... Types >
 class DIP_NO_EXPORT JointImageIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      template< dip::uint I > using value_type = typename std::tuple_element< I, std::tuple< Types ... >>::type; ///< The data type of the sample, obtained when dereferencing the iterator
-      template< dip::uint I > using reference = value_type< I >&; ///< The type of a reference to a sample
-      template< dip::uint I > using pointer = value_type< I >*;   ///< The type of a pointer to a sample
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The data type of the sample, obtained when dereferencing the iterator
+      template< dip::uint I > using value_type = typename std::tuple_element< I, std::tuple< Types ... >>::type;
+      /// The type of a reference to a sample
+      template< dip::uint I > using reference = value_type< I >&;
+      /// The type of a pointer to a sample
+      template< dip::uint I > using pointer = value_type< I >*;
 
       /// \brief Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an
       /// end iterator.
@@ -1095,7 +1106,7 @@ inline void swap( JointImageIterator< inT, outT >& v1, JointImageIterator< inT, 
 }
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

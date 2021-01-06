@@ -34,7 +34,6 @@ namespace dip {
 
 
 /// \addtogroup iterators
-/// \{
 
 
 /// \brief An iterator to iterate over pixels along a straight line.
@@ -52,13 +51,19 @@ namespace dip {
 /// \see LineIterator, SampleIterator
 class DIP_NO_EXPORT BresenhamLineIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = dip::sint;          ///< The type of an offset
-      using reference = value_type const&;   ///< The type of a reference to an offset
-      using pointer = value_type const*;     ///< The type of a pointer an offset
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The type of an offset
+      using value_type = dip::sint;
+      /// The type of a reference to an offset
+      using reference = value_type const&;
+      /// The type of a pointer an offset
+      using pointer = value_type const*;
 
-      constexpr static dfloat epsilon = 1e-5;         ///< Tolerance used to avoid errors caused by rounding.
-      constexpr static dfloat delta = 1.0 - epsilon;  ///< A distance of almost one pixel.
+      /// Tolerance used to avoid errors caused by rounding.
+      constexpr static dfloat epsilon = 1e-5;
+      /// A distance of almost one pixel.
+      constexpr static dfloat delta = 1.0 - epsilon;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       BresenhamLineIterator() = default;
@@ -228,14 +233,18 @@ inline void swap( BresenhamLineIterator& v1, BresenhamLineIterator& v2 ) {
 ///
 /// Note that when an image is stripped or reforged, all its iterators are invalidated.
 ///
-/// \see \ref using_iterators, ImageIterator, GenericJointImageIterator
+/// \see using_iterators, ImageIterator, GenericJointImageIterator
 template< typename T = dfloat >
 class DIP_NO_EXPORT GenericImageIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = Image::CastPixel< T >; ///< The type of the pixel, obtained when dereferencing the iterator
-      using reference = value_type; ///< The type of a reference to a pixel (note dip::Image::CastPixel references a value in the image)
-      using pointer = value_type*;  ///< The type of a pointer to a pixel
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The type of the pixel, obtained when dereferencing the iterator
+      using value_type = Image::CastPixel< T >;
+      /// The type of a reference to a pixel (note dip::Image::CastPixel references a value in the image)
+      using reference = value_type;
+      /// The type of a pointer to a pixel
+      using pointer = value_type*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       GenericImageIterator() : procDim_( std::numeric_limits< dip::uint >::max() ), sizeOf_( 0 ), atEnd_( true ) {}
@@ -502,7 +511,7 @@ inline void swap( GenericImageIterator< T >& v1, GenericImageIterator< S >& v2 )
    v1.swap( v2 );
 }
 
-/// \cond
+#ifndef DIP_CONFIG_FAKE_DOCUMENTATION // This should never be defined when compiling!!!
 
 inline GenericImageIterator< dip::dfloat > Image::begin() {
    return GenericImageIterator< dip::dfloat >( *this );
@@ -512,7 +521,7 @@ inline GenericImageIterator< dip::dfloat > Image::end() {
    return GenericImageIterator< dip::dfloat >();
 }
 
-/// \endcond
+#endif // DIP_CONFIG_FAKE_DOCUMENTATION
 
 
 /// \brief A data-type--agnostic version of `dip::JointImageIterator`. Use this iterator only to write code that
@@ -552,14 +561,18 @@ inline GenericImageIterator< dip::dfloat > Image::end() {
 ///
 /// Note that when an image is stripped or reforged, all its iterators are invalidated.
 ///
-/// \see \ref using_iterators, JointImageIterator, GenericImageIterator
+/// \see using_iterators, JointImageIterator, GenericImageIterator
 template< dip::uint N, typename T = dfloat >
 class DIP_NO_EXPORT GenericJointImageIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = Image::CastPixel< T >; ///< The type of the pixel, obtained when dereferencing the iterator
-      using reference = value_type;       ///< The type of a reference to a pixel (note dip::Image::CastPixel references a value in the image)
-      using pointer = value_type*;        ///< The type of a pointer to a pixel
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The type of the pixel, obtained when dereferencing the iterator
+      using value_type = Image::CastPixel< T >;
+      /// The type of a reference to a pixel (note dip::Image::CastPixel references a value in the image)
+      using reference = value_type;
+      /// The type of a pointer to a pixel
+      using pointer = value_type*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       GenericJointImageIterator() : procDim_( std::numeric_limits< dip::uint >::max() ), atEnd_( true ) {
@@ -992,14 +1005,19 @@ inline void swap( GenericJointImageIterator< N, T >& v1, GenericJointImageIterat
 /// Additionally, it behaves like a RandomAccessIterator except for the indexing operator `[]`,
 /// which would be less efficient in use and therefore it's better to not offer it.
 ///
-/// \see \ref using_iterators, ImageTensorIterator, ImageIterator, JointImageIterator, GenericImageIterator, GenericJointImageIterator
+/// \see using_iterators, ImageTensorIterator, ImageIterator, JointImageIterator, GenericImageIterator, GenericJointImageIterator
 class DIP_NO_EXPORT ImageSliceIterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = Image;           ///< The type obtained when dereferencing the iterator
-      using difference_type = dip::sint;  ///< The type of distances between iterators
-      using reference = Image&;           ///< The type of a reference to `value_type`
-      using pointer = Image*;             ///< The type of a pointer to `value_type`
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The type obtained when dereferencing the iterator
+      using value_type = Image;
+      /// The type of distances between iterators
+      using difference_type = dip::sint;
+      /// The type of a reference to `value_type`
+      using reference = Image&;
+      /// The type of a pointer to `value_type`
+      using pointer = Image*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced or used in any way
       ImageSliceIterator() = default;
@@ -1214,7 +1232,7 @@ inline ImageSliceIterator ImageSliceEndIterator( Image const& image, dip::uint p
 /// Note that when the original image is stripped or reforged, the iterator is still valid and
 /// holds on to the original data segment.
 ///
-/// \see \ref using_iterators, ImageSliceIterator, ImageIterator, JointImageIterator, GenericImageIterator, GenericJointImageIterator
+/// \see using_iterators, ImageSliceIterator, ImageIterator, JointImageIterator, GenericImageIterator, GenericJointImageIterator
 inline ImageSliceIterator ImageTensorIterator( Image const& image ) {
    Image tmp = image;
    dip::uint dim = tmp.Dimensionality();
@@ -1223,7 +1241,7 @@ inline ImageSliceIterator ImageTensorIterator( Image const& image ) {
 }
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

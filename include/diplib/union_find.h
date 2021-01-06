@@ -33,7 +33,6 @@ namespace dip {
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 /// \brief An STL-like data structure for the union-find algorithm.
@@ -68,8 +67,10 @@ namespace dip {
 template< typename IndexType_, typename ValueType_, typename UnionFunction_ >
 class UnionFind {
    public:
-      using IndexType = IndexType_; ///< The type of the index (or label) that identifies each tree element
-      using ValueType = ValueType_; ///< The type of the additional data stored for each tree element
+      /// The type of the index (or label) that identifies each tree element
+      using IndexType = IndexType_;
+      /// The type of the additional data stored for each tree element
+      using ValueType = ValueType_;
 
       /// \brief Default constructor, creates an empty structure
       explicit UnionFind( UnionFunction_ const& unionFunction )
@@ -237,7 +238,7 @@ class SimpleUnionFind : public UnionFind< IndexType_, detail::DummyUnionFindData
 };
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

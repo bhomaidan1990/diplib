@@ -32,9 +32,9 @@
 namespace dip {
 
 
-/// \defgroup segmentation Segmentation
+/// \group segmentation Segmentation
 /// \brief Segmentation and binarization algorithms.
-/// \{
+/// \addtogroup
 
 
 /// \brief Applies k-means clustering to an image, yielding `nClusters` labeled regions.
@@ -624,7 +624,7 @@ inline Image Superpixels(
    return out;
 }
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

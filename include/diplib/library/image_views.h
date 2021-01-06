@@ -40,7 +40,6 @@
 namespace dip {
 
 /// \addtogroup infrastructure
-/// \{
 
 
 //
@@ -557,10 +556,14 @@ class Image::Pixel {
       /// `dip::Image::Pixel::begin` and `dip::Image::Pixel::end`.
       class Iterator {
          public:
-            using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-            using value_type = Sample;          ///< The data type of a sample, obtained when dereferencing the iterator
-            using reference = value_type&;      ///< The type of a reference to a sample
-            using pointer = value_type*;        ///< The type of a pointer to a sample
+            /// Iterator category
+            using iterator_category = std::forward_iterator_tag;
+            /// The data type of a sample, obtained when dereferencing the iterator
+            using value_type = Sample;
+            /// The type of a reference to a sample
+            using reference = value_type&;
+            /// The type of a pointer to a sample
+            using pointer = value_type*;
 
             /// Default initializable, results in invalid iterator
             Iterator() : value_( nullptr, DT_BIN ), tensorStride_( 0 ), position_( 0 ) {}
@@ -780,7 +783,7 @@ DIP_EXPORT bool operator>=( Image::Pixel const& lhs, Image::Pixel const& rhs );
 template< typename T, typename = std::enable_if_t< IsNumericType< T >::value >>
 bool operator>=( Image::Pixel const& lhs, T const& rhs ) { return operator>=( lhs, Image::Pixel{ rhs } ); }
 
-/// \cond
+#ifndef DIP_CONFIG_FAKE_DOCUMENTATION // This should never be defined when compiling!!!
 
 template< typename T >
 Image::Pixel& Image::Pixel::operator+=( T const& rhs ) { return *this = operator+( *this, rhs ); }
@@ -812,7 +815,7 @@ Image::Sample& Image::Sample::operator^=( T const& rhs ) { return *this = operat
 // This dip::Image::Sample constructor depends on the definition of dip::Image::Pixel
 inline Image::Sample::Sample( Image::Pixel const& pixel ) : origin_( pixel.Origin() ), dataType_( pixel.DataType() ) {}
 
-/// \endcond
+#endif // DIP_CONFIG_FAKE_DOCUMENTATION
 
 /// \brief You can output a `dip::Image::Pixel` to `std::cout` or any other stream.
 /// It is printed as a sequence of values, prepended with "Pixel with values:".
@@ -1134,10 +1137,14 @@ class Image::View {
 /// \brief View iterator, similar in functionality to `dip::GenericImageIterator`.
 class Image::View::Iterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = Image::Pixel;     ///< The data type obtained when dereferencing the iterator
-      using reference = value_type;        ///< The type of a reference to a pixel
-      using pointer = value_type*;         ///< The type of a pointer to a pixel
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The data type obtained when dereferencing the iterator
+      using value_type = Image::Pixel;
+      /// The type of a reference to a pixel
+      using reference = value_type;
+      /// The type of a pointer to a pixel
+      using pointer = value_type*;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced, and is equivalent to an end iterator
       Iterator();
@@ -1217,7 +1224,7 @@ class Image::View::Iterator {
       // TODO: maybe we can have a different version of the iterator that takes a reference (or pointer).
 };
 
-/// \}
+/// \endgroup
 
 
 //

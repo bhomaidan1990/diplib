@@ -40,17 +40,15 @@ struct DIP_NO_EXPORT ChainCode;
 struct DIP_NO_EXPORT Polygon;
 class DIP_NO_EXPORT ConvexHull;
 
-/// \defgroup measurement Measurement
+/// \group measurement Measurement
 /// \brief The measurement infrastructure and functionality.
 ///
 /// The `dip::MeasurementTool` class provides the main interface to the
 /// functionality in this module. Quantification results are encapsulated in
 /// an object of the `dip::Measurement` class.
-/// \{
-
+/// \addtogroup
 
 /// \brief Contains classes that implement the measurement features.
-/// \ingroup measurement
 namespace Feature {
 
 /// \brief The types of measurement features
@@ -100,8 +98,6 @@ using ValueInformationArray = std::vector< ValueInformation >;
 using ObjectIdToIndexMap = std::map< dip::uint, dip::uint >;
 
 /// \brief Contains measurement results, as obtained through `dip::MeasurementTool::Measure`.
-///
-/// \ingroup measurement
 ///
 /// A newly constructed `%Measurement` will accept calls to `AddFeature`, and
 /// `AddObjectIDs`. Once the object is set up with all objects and features needed, a call
@@ -162,8 +158,10 @@ using ObjectIdToIndexMap = std::map< dip::uint, dip::uint >;
 /// a special test for the case of an image without objects.
 class DIP_NO_EXPORT Measurement {
    public:
-      using ValueType = dfloat;           ///< The type of the measurement data
-      using ValueIterator = ValueType*;   ///< A pointer to measurement data, which we can treat as an iterator
+      /// The type of the measurement data
+      using ValueType = dfloat;
+      /// A pointer to measurement data, which we can treat as an iterator
+      using ValueIterator = ValueType*;
 
       /// \brief Structure containing information about the features stored in a `dip::Measurement` object
       struct DIP_NO_EXPORT FeatureInformation {
@@ -823,8 +821,6 @@ class DIP_CLASS_EXPORT Composite : public Base {
 
 /// \brief Performs measurements on images.
 ///
-/// \ingroup measurement
-///
 /// The %MeasurementTool class knows about defined measurement features, and can apply them to an
 /// image through its `dip::MeasurementTool::Measure` method.
 ///
@@ -1146,7 +1142,7 @@ DIP_EXPORT MinMaxAccumulator MaximumAndMinimum( Measurement::IteratorFeature con
 DIP_EXPORT StatisticsAccumulator SampleStatistics( Measurement::IteratorFeature const& featureValues );
 
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

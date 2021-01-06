@@ -33,7 +33,6 @@ namespace dip {
 
 
 /// \addtogroup infrastructure
-/// \{
 
 
 class DIP_NO_EXPORT PixelTable; // forward declaration, it's defined a little lower down.
@@ -367,9 +366,12 @@ class DIP_NO_EXPORT PixelTable {
 /// Satisfies the requirements for ForwardIterator.
 class DIP_NO_EXPORT PixelTable::iterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = IntegerArray;       ///< The value obtained by dereferencing are coordinates
-      using reference = IntegerArray const&; ///< The type of a reference
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The value obtained by dereferencing are coordinates
+      using value_type = IntegerArray;
+      /// The type of a reference
+      using reference = IntegerArray const&;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced
       iterator() = default;
@@ -455,7 +457,7 @@ inline void swap( PixelTable::iterator& v1, PixelTable::iterator& v2 ) {
    v1.swap( v2 );
 }
 
-/// \cond
+#ifndef DIP_CONFIG_FAKE_DOCUMENTATION // This should never be defined when compiling!!!
 
 inline PixelTable::iterator PixelTable::begin() const {
    return iterator( *this );
@@ -465,7 +467,7 @@ inline PixelTable::iterator PixelTable::end() const {
    return iterator::end( *this );
 }
 
-/// \endcond
+#endif // DIP_CONFIG_FAKE_DOCUMENTATION
 
 
 /// \brief An iterator that visits each of the neighborhood's pixels in turn.
@@ -474,9 +476,12 @@ inline PixelTable::iterator PixelTable::end() const {
 /// Satisfies the requirements for ForwardIterator.
 class DIP_NO_EXPORT PixelTableOffsets::iterator {
    public:
-      using iterator_category = std::forward_iterator_tag; ///< %Iterator category
-      using value_type = dip::sint;       ///< The value obtained by dereferencing is an offset
-      using reference = dip::sint;        ///< The type of a reference, but we don't return by reference, it's just as easy to copy
+      /// Iterator category
+      using iterator_category = std::forward_iterator_tag;
+      /// The value obtained by dereferencing is an offset
+      using value_type = dip::sint;
+      /// The type of a reference, but we don't return by reference, it's just as easy to copy
+      using reference = dip::sint;
 
       /// Default constructor yields an invalid iterator that cannot be dereferenced
       iterator() = default;
@@ -582,7 +587,7 @@ inline std::vector< dip::sint > PixelTableOffsets::Offsets() const {
 
 /// \endcond
 
-/// \}
+/// \endgroup
 
 } // namespace dip
 

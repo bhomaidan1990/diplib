@@ -68,15 +68,16 @@ namespace dip {
 /// debug information (release) or without optimizations and with debug
 /// information (debug). Next it lists a series of compile-time options,
 /// separated by comma. The options are:
-///  - "with OpenMP": indicates multithreading is built in.
-///  - "recording stack traces": indicates that exceptions report a stack trace,
-///    rather than only show the function that threw it.
-///  - "asserts enabled": indicates additional run-time tests for consistency
-///    are executed.
-///  - "Unicode support": indicates e.g. units are output using Unicode.
-///  - "ICS support": indicates ICS file reading and writing is available.
-///  - "TIFF support": indicates TIFF file reading and writing is available.
-///  - "JPEG support": indicates JPEG file reading and writing is available.
+///
+/// - "with OpenMP": indicates multithreading is built in.
+/// - "recording stack traces": indicates that exceptions report a stack trace,
+///   rather than only show the function that threw it.
+/// - "asserts enabled": indicates additional run-time tests for consistency
+///   are executed.
+/// - "Unicode support": indicates e.g. units are output using Unicode.
+/// - "ICS support": indicates ICS file reading and writing is available.
+/// - "TIFF support": indicates TIFF file reading and writing is available.
+/// - "JPEG support": indicates JPEG file reading and writing is available.
 struct DIP_NO_EXPORT LibraryInformation {
    String name;         ///< The library name
    String description;  ///< A short description string

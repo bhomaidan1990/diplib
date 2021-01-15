@@ -9,6 +9,7 @@ level = info
 [input]
 root directory = ../include/
 header files = ../include/*.h ../include/diplib/library/*.h ../include/diplib/*.h ../include/diplib/viewer/*.h
+#header files = ../include/diplib/chain_code.h
 markdown files = src/*.md src/*/*.md
 tab size = 3
 
@@ -31,7 +32,8 @@ document undocumented members = no
 modify include statement = def modify_include_statement(id): return 'file--diplib-h' if id.startswith('file--diplib--library--') else id
 theme color = #22272e
 favicon = DIP_logo_32.png
-stylesheets = m.css/css/m-dip+documentation.compiled.css
+stylesheets = https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700,700i%7CSource+Code+Pro:400,400i,600
+              m.css/css/m-dip+documentation.compiled.css
 templates = 
 extra files = 
 html header = 

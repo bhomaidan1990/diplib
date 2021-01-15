@@ -18,10 +18,6 @@
 
 \page sec_dum_faq Frequently asked questions
 
-\m_footernavigation
-
-\tableofcontents
-
 
 \section sec_dum_faq_bugs Bugs
 
@@ -82,7 +78,7 @@ of the *MATLAB* search path (with `addpath`), then the *DIPimage* `watershed` is
 If you like to use the Image Processing Toolbox function `watershed`, you can do the following:
 
 - Change the order of paths in the search path. However, this means none of the *DIPimage* functions take
-  precedence anymore. You do this by adding <tt>'-end'</tt> to the `addpath` command (check with `help addpath`).
+  precedence anymore. You do this by adding `'-end'` to the `addpath` command (check with `help addpath`).
 
 - Find out which `watershed` functions are available (with `which watershed -all`), and change to the right
 directory before calling `watershed`. The function in the current directory is always selected over functions

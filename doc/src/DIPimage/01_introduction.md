@@ -18,10 +18,6 @@
 
 \page sec_dum_introduction Introduction
 
-\m_footernavigation
-
-\tableofcontents
-
 \section sec_dum_introduction_the_dipimage_toolbox The DIPimage toolbox
 
 *MATLAB* is a software package designed for (among other things) data
@@ -61,7 +57,7 @@ functions will list the *DIPlib* function that is called.
 to learn more details about the algorithm and the meaning of the parameters.
 
 More information on *DIPlib* can be found at
-<https://diplib.org/diplib-docs/> and <http://diplib.org/>.
+<https://diplib.org/diplib-docs/> and <https://diplib.org/>.
 
 \section sec_dum_introduction_image_analysis Image Analysis
 

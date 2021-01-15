@@ -18,8 +18,6 @@
 
 \page sec_dum_mex_files Writing MEX-files that use DIPlib
 
-\m_footernavigation
-
 A MEX-file is a compiled C, C++ or Fortran function (C++ if it uses *DIPlib*) that
 can be called from *MATLAB* as if it were a normal *MATLAB* function. It must take
 *MATLAB* data as input and produce *MATLAB* data as output. To call a *DIPlib* function
@@ -31,8 +29,6 @@ It is assumed that the reader is familiar with basic MEX-files (see the
 if not) and basic *DIPlib* (see the \ref index "documentation" if not).
 We exclusively use [the C API](https://www.mathworks.com/help/matlab/cc-mx-matrix-library.html).
 
-\tableofcontents
-
 \section sec_dum_mex_files_dml The DIPlib-MATLAB interface
 
 The header file \ref "dip_matlab_interface.h" contains a series of functions that can
@@ -40,7 +36,7 @@ be used to convert *MATLAB* types to *DIPlib* types and vice versa. These functi
 make it very easy to write a *MATLAB* interface to *DIPlib* functions (and this is
 its main purpose), but could be used for other purposes too.
 
-All its functionality is in the <tt>\ref dml</tt> namespace.
+All its functionality is in the \ref dml namespace.
 
 \subsection sec_dum_mex_files_dml_output_images Output images
 
@@ -58,24 +54,24 @@ extracts it.
 This is a skeleton MEX-file that outputs such an image:
 
 ```cpp
-    #include <dip_matlab_interface.h> // Always include this, it includes diplib.h and mex.h
+#include <dip_matlab_interface.h> // Always include this, it includes diplib.h and mex.h
 
-    void mexFunction( int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[] ) {
-       try {
+void mexFunction( int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[] ) {
+   try {
 
-          // Create an output image
-          dml::MatlabInterface mi;
-          dip::Image out = mi.NewImage();
+      // Create an output image
+      dml::MatlabInterface mi;
+      dip::Image out = mi.NewImage();
 
-          // Forge it
-          out.ReForge( { 256, 256 }, 1, dip::DT_UINT8 );
-          out.Fill( 0 ); // Usually you'd do something more exciting here!
+      // Forge it
+      out.ReForge( { 256, 256 }, 1, dip::DT_UINT8 );
+      out.Fill( 0 ); // Usually you'd do something more exciting here!
 
-          // Retrieve the MATLAB array for the output image (it's a dip_image object)
-          plhs[ 0 ] = dml::GetArray( out );
+      // Retrieve the MATLAB array for the output image (it's a dip_image object)
+      plhs[ 0 ] = dml::GetArray( out );
 
-       } DML_CATCH
-    }
+   } DML_CATCH
+}
 ```
 
 The documentation to \ref dml::MatlabInterface gives more details about how to use
@@ -92,7 +88,7 @@ objects are not copied).
 For example, one can add the following line to the `mexFunction` above:
 
 ```cpp
-    dip::Image const in = ( nrhs > 0 ) ? dml::GetImage( prhs[ 0 ] ) : dip::Image();
+dip::Image const in = ( nrhs > 0 ) ? dml::GetImage( prhs[ 0 ] ) : dip::Image();
 ```
 
 This line calls \ref dml::GetImage only if `prhs[0]` actually exists. If not, it
@@ -105,7 +101,7 @@ one element, even if `nlhs == 0`).
 
 There exist similar `Get...` functions for just about every *DIPlib* type, for example
 \ref dml::GetFloat, \ref dml::GetFloatArray or \ref dml::GetFloatCoordinateArray. See
-the documentation to the <tt>\ref dml</tt> namespace for a complete list. These
+the documentation to the \ref dml namespace for a complete list. These
 take an `mxArray` pointer as input, validate it, and output a value of the appropriate
 type. If the validation fails, an exception is thrown.
 
@@ -131,7 +127,7 @@ To compile a MEX-file like the one shown in the previous section, save it for ex
 as `myfunction.cpp`, and use the `dipmex` function in *MATLAB*:
 
 ```m
-    dipmex myfunction.cpp
+dipmex myfunction.cpp
 ```
 
 This function simply calls the `mex` function, adding arguments to allow the compiler
@@ -145,14 +141,14 @@ The result of the `dipmex` command above is a MEX-file called `myfunction`. You 
 call it like any other *MATLAB* function:
 
 ```m
-    img = myfunction;  % it has no input arguments
+img = myfunction;  % it has no input arguments
 ```
 
 If your MEX-file needs more source files and/or libraries, simply add them to the
 `dipmex` command. You can also add [other arguments for `mex`](https://www.mathworks.com/help/matlab/ref/mex.html) here:
 
 ```m
-    dipmex myfunction.cpp other_source.cpp /home/me/mylibs/libstuff.a -I/home/me/mylibs/
+dipmex myfunction.cpp other_source.cpp /home/me/mylibs/libstuff.a -I/home/me/mylibs/
 ```
 
 The MEX-file will always have as name the name of the first source file in the list,

@@ -18,8 +18,6 @@
 
 \page sec_dum_figurewindows Figure Windows
 
-\m_footernavigation
-
 The display is a very important part of any image-processing package.
 `dip_image` objects containing scalar or color images with 1 to 4
 dimensions are displayed to *MATLAB*'s figure windows. These windows are
@@ -31,7 +29,7 @@ with them, and their placing on the desktop.
 The figure windows described in this chapter are those created by the `dipshow`
 function. This function is also used by default to automatically display
 images when a when a *MATLAB* command does not end with a semicolon.
-See the <tt>'DisplayToFigure'</tt> option in \ref sec_dum_customizing_dippref.
+See the `'DisplayToFigure'` option in \ref sec_dum_customizing_dippref.
 
 The alternative way to display images is with the `viewslice` function.
 The figure windows created use the *DIPviewer* tool, which has better
@@ -40,11 +38,9 @@ but is not integrated equally well into *MATLAB*.
 See \ref viewer_ui "the DIPviewer documentation"
 for more information on these figure windows.
 
-The <tt>'DisplayFunction'</tt> option (see \ref sec_dum_customizing_dippref)
+The `'DisplayFunction'` option (see \ref sec_dum_customizing_dippref)
 controls which of these two commands is used to automatically display
 images.
-
-\tableofcontents
 
 \section sec_dum_figurewindows_menus The figure window menus
 
@@ -207,7 +203,7 @@ enable the keyboard again, use the menu item "Enable keyboard" under the
 "Actions" menu. With the command
 
 ```m
-    dipsetpref('EnableKeyboard','off')
+dipsetpref('EnableKeyboard','off')
 ```
 
 you disable the keyboard by default, and will have to use the above
@@ -228,10 +224,10 @@ a variable does not change the contents of a figure window. By not
 adding the semicolon at the end of commands, it is possible to
 automatically update the figure windows (see \ref sec_dum_dip_image_displaying).
 
-A special name <tt>'other'</tt> is defined in `dipfig`, that is a substitute
+A special name `'other'` is defined in `dipfig`, that is a substitute
 for all variables not explicitly linked to a figure window. It allows
 the user to have a window for all possible images he can create.
-<tt>'other'</tt> can be linked to a series of windows, which then will be used
+`'other'` can be linked to a series of windows, which then will be used
 sequentially.
 
 Closing a window does not destroy the links that were made for it. Since
@@ -245,11 +241,11 @@ window are considered aliases for a figure window handle.
 \section sec_dum_figurewindows_position Setting the position of figure windows
 
 The position of a figure window can be changed by manipulating its
-<tt>'Position'</tt> property, which is defined by an array with four values:
+`'Position'` property, which is defined by an array with four values:
 `left`, `bottom`, `width` and `height`.
 
 ```m
-    set(handle,'Position',[left,bottom,width,heigth]);
+set(handle,'Position',[left,bottom,width,heigth]);
 ```
 
 The coordinates for figure windows start at the bottom-left corner of
@@ -257,7 +253,7 @@ the screen, and are in screen pixels by default. This can be changed to
 `centimeters`, `inches` and other units:
 
 ```m
-    set(handle,'Units','points');
+set(handle,'Units','points');
 ```
 
 See [*MATLAB* Function Reference](https://www.mathworks.com/help/releases/R2017a/matlab/ref/figure-properties.html)
@@ -265,16 +261,16 @@ for more information on figure window properties. You can see a local
 copy of this page by typing from within MATLAB
 
 ```m
-    web(fullfile(docroot,'matlab/ref/figure-properties.html'))
+web(fullfile(docroot,'matlab/ref/figure-properties.html'))
 ```
 
 The `dipfig` function has an additional optional parameter, which can be
 used to set the position of a figure window at the same time that it is
 created. This parameter comes at the end of the parameter list, and is
-the same array used for the <tt>'Position'</tt> property:
+the same array used for the `'Position'` property:
 
 ```m
-    dipfig('a',[400,600,256,256]);
+dipfig('a',[400,600,256,256]);
 ```
 
 The `width` and `height` values are those of the image that will fit in
@@ -283,10 +279,10 @@ values are always in screen pixels.
 
 If an image is larger or smaller than the size of the window, the window
 will be resized so that the image fits exactly. That is, unless the
-<tt>'TrueSize'</tt> option is turned off (see \ref sec_dum_customizing_dippref),
+`'TrueSize'` option is turned off (see \ref sec_dum_customizing_dippref),
 in which case the window will not be
 resized, and the image will be stretched to fit. To have your windows
-fixed on the desktop, disable the <tt>'TrueSize'</tt> option.
+fixed on the desktop, disable the `'TrueSize'` option.
 
 As with all other settings, the position of the figure windows cannot be
 saved from one session to the next. Add the appropriate commands to your

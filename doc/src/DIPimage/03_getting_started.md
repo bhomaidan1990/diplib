@@ -18,8 +18,6 @@
 
 \page sec_dum_gettingstarted Getting Started
 
-\m_footernavigation
-
 To show you around *DIPimage*, we will work through a simple
 image analysis application. Not all steps will be written out
 explicitly, since it is our goal to make you understand what is going
@@ -29,14 +27,12 @@ result.
 The goal of this application is to do some measurements on an image of
 some rice grains, then analyze these measurements.
 
-\tableofcontents
-
 \section sec_dum_gettingstarted_gui Starting the GUI
 
 Type the following command at the *MATLAB* prompt:
 
 ```m
-    dipimage
+dipimage
 ```
 
 This should start the *DIPimage* GUI. A new window appears to the top-left
@@ -46,7 +42,7 @@ should change into a dialog box that allows you to enter the parameters
 for the filter you have chosen. See also
 \ref sec_dum_functions_dipimage and \ref sec_dum_customizing_gui for more info on the GUI.
 
-\image html dipimage.png
+![DIPimage GUI](dipimage.png)
 
 \section sec_dum_gettingstarted_loading Loading and displaying an image
 
@@ -59,14 +55,14 @@ then press the "Execute" button. Two things should happen:
 1.  The image 'rice' is loaded into the variable `a`, and displayed to
     a figure window:
 
-    \image html rice.png
+    ![Rice image displayed in figure window](rice.png)
 
 2.  The following lines (or something very similar) appear in the
     command window:
 
 ```txt
-    >> a = readim('c:\dip\share\images\rice.tif','')
-    Displayed in figure 1
+>> a = readim('c:\dip\share\images\rice.tif','')
+Displayed in figure 1
 ```
 
 This is to show you that the same would have happened if you would have
@@ -74,14 +70,14 @@ typed that command directly yourself, without using the GUI. Try typing
 this command:
 
 ```m
-    a = readim('rice')
+a = readim('rice')
 ```
 
 The same image should be loaded into the same variable, and again
-displayed to a window. Note that we left off the <tt>'.tif'</tt> ending of
+displayed to a window. Note that we left off the `'.tif'` ending of
 the filename. `readim` can find the file without you having to specify
 the extension. We also didn't use the second argument to the `readim`
-function, since <tt>''</tt> is the default value. Finally, by not specifying a
+function, since `''` is the default value. Finally, by not specifying a
 path to the file, we asked the function to look for it either in the
 current directory or in any of the directories specified by the
 `ImageFilePath` setting (see \ref sec_dum_customizing_dippref).
@@ -90,7 +86,7 @@ To avoid having the image displayed in a window automatically, add a
 semicolon to the end of the command:
 
 ```m
-    a = readim('rice');
+a = readim('rice');
 ```
 
 \section sec_dum_gettingstarted_preprocessing Pre-processing the image
@@ -109,7 +105,7 @@ Once we have the background image, we can subtract it from the original
 image. It is very easy to do arithmetic with images in *MATLAB*. Type
 
 ```m
-    a = a - bg
+a = a - bg
 ```
 
 The new image should be displayed to a figure window, but it looks very
@@ -119,7 +115,7 @@ to black, and the value 255 to white. You can change this by choosing a
 different mapping mode. Open the "Mappings" menu on the figure window,
 and choose "Linear stretch" (try out the other modes too).
 
-\image html rice_min_bg.png
+![rice minus background](rice_min_bg.png)
 
 The "Actions" menu allows you to choose what the mouse should do on the
 figure window. Select "Pixel testing", and press the mouse button while
@@ -137,7 +133,7 @@ we can examine the histogram of the image. Choose "Histogram" on the
 "Statistics" menu, or type
 
 ```m
-    diphist(a,[])
+diphist(a,[])
 ```
 
 The graph shows two peaks, one for the background, one for the objects.
@@ -146,7 +142,7 @@ compare all pixel values with the threshold, which can be done in this
 way:
 
 ```m
-    b = a > 20
+b = a > 20
 ```
 
 This results in a binary image (logical image, containing values of
@@ -165,8 +161,8 @@ image, and the edge condition set to 1. To create an empty seed image
 use the `newim` function. Thus, these two commands are equivalent:
 
 ```m
-    b = b - bpropagation(newim(b,'bin'),b,0,2,1)
-    b = brmedgeobjs(b,2)
+b = b - bpropagation(newim(b,'bin'),b,0,2,1)
+b = brmedgeobjs(b,2)
 ```
 
 \section sec_dum_gettingstarted_measuring Measuring
@@ -179,15 +175,15 @@ different value. In the window of the new image, select the "Labels"
 mapping. Now each grey value gets a different color. Examine the pixel
 values to see how the objects are labeled.
 
-\image html rice_labels.png
+![Labeled rice image](rice_labels.png)
 
 Now do the measuring. We will measure the object area in pixels
-(<tt>'Size'</tt>) and the Feret diameters (<tt>'Feret'</tt>), which are the largest
+(`'Size'`) and the Feret diameters (`'Feret'`), which are the largest
 and smallest diameters, and the diameter perpendicular to the smallest
 diameter.
 
 ```m
-    data = measure(lab,[],{'Size','Feret'});
+data = measure(lab,[],{'Size','Feret'});
 ```
 
 `measure` returns an object of type `dip_measurement`, which is
@@ -202,8 +198,8 @@ To extract the measurements done on all objects and put them in an
 array, type
 
 ```m
-    feret = data.Feret;
-    sz = data.Size;
+feret = data.Feret;
+sz = data.Size;
 ```
 
 This gives us arrays with the measured data. *MATLAB* allows all kinds of
@@ -215,15 +211,15 @@ the area of the grains. Let's start by plotting the length of the grains
 against their width:
 
 ```m
-    figure;
-    scatter(feret(:,1),feret(:,2))
+figure;
+scatter(feret(:,1),feret(:,2))
 ```
 
 Apparently, they are mostly unrelated. Let's try a relation between the
 length and the surface area:
 
 ```m
-    scatter(feret(:,1),sz)
+scatter(feret(:,1),sz)
 ```
 
 These appear to be more related, but, of course, the area also depends
@@ -232,8 +228,8 @@ we know that the area is \f$\frac{1}{4}\pi d_1 d_2\f$. Let's plot the
 calculated area against the measured area:
 
 ```m
-    calc = pi/4 * feret(:,1) .* feret(:,2);
-    scatter(sz,calc)
+calc = pi/4 * feret(:,1) .* feret(:,2);
+scatter(sz,calc)
 ```
 
 Wow! That is a linear relation. We can add a line along the diagonal to
@@ -241,20 +237,20 @@ see how much the ratio differs from 1 (the other commands are to make
 the figure look prettier):
 
 ```m
-    hold on
-    plot([180,360],[180,360],'k--')
-    axis equal
-    box on
-    xlabel('object area   (pixels^2)')
-    ylabel('\pi{\cdot}a{\cdot}b   (pixels^2)')
+hold on
+plot([180,360],[180,360],'k--')
+axis equal
+box on
+xlabel('object area   (pixels^2)')
+ylabel('\pi{\cdot}a{\cdot}b   (pixels^2)')
 ```
 
-\image html rice_graph.png
+![Graph produced by code above](rice_graph.png)
 
 The actual slope can be computed by:
 
 ```m
-    f = sz\calc
+f = sz\calc
 ```
 
 (this is the lest-squares solution to the linear equation `sz*f = calc`).

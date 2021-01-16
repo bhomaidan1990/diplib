@@ -101,10 +101,4 @@ DIP_EXPORT extern const LibraryInformation libraryInformation;
 /// \group interfaces Interfaces
 /// \brief Interfaces between DIPlib and other libraries/packages
 
-/// \dir include/diplib
-/// \brief Contains include files for the various modules in DIPlib
-
-/// \dir include/diplib/library
-/// \brief Contains core include files for DIPlib, they are all included by `diplib.h`
-
 #endif // DIPLIB_H

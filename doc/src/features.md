@@ -22,8 +22,6 @@ This page describes all the features known to \ref dip::MeasurementTool by defau
 are sorted into sections in the same way as the table in the documentation to
 `dip::MeasurementTool`
 
-\tableofcontents
-
 
 \comment --------------------------------------------------------------
 
@@ -64,9 +62,8 @@ Any holes in the object are not included in the perimeter either.
 The 3D equivalent to the \ref size_features_Perimeter feature. It does not assume a single connected component,
 and will include all surfaces in the measurement, including those of holes.
 
-\literature
-<li>J.C. Mullikin and P.W. Verbeek, "Surface area estimation of digitized planes," Bioimaging 1(1):6-16, 1993.
-\endliterature
+!!! literature
+    - J.C. Mullikin and P.W. Verbeek, "Surface area estimation of digitized planes," Bioimaging 1(1):6-16, 1993.
 
 \subsection size_features_Feret Feret
 Computes the maximum and minimum object diameters from the object's convex hull, using
@@ -138,16 +135,16 @@ Note that the centroid does not necessarily lie within the object.
 \subsection shape_features_P2A P2A
 Computes:
 
- - 2D: \f$\frac{p^2}{4 \pi a}\f$, where \f$p\f$ is the perimeter and \f$a\f$ is the area.
- - 3D: \f$\frac{\sqrt{a^3}}{6v\sqrt{\pi}}\f$, where \f$a\f$ is the surface area and
-       \f$v\f$ is the volume.
+ - 2D: $\frac{p^2}{4 \pi a}$, where $p$ is the perimeter and $a$ is the area.
+ - 3D: $\frac{\sqrt{a^3}}{6v\sqrt{\pi}}$, where $a$ is the surface area and
+   $v$ is the volume.
 
 See \ref size_features_Perimeter,
 \ref size_features_SurfaceArea and \ref size_features_Size. For solid objects, this
 measure is the reciprocal of \ref shape_features_Roundness.
 
 \subsection shape_features_Roundness Roundness
-Computes \f$\frac{4\pi a}{p^2}\f$, where \f$a\f$ is the solid area and \f$p\f$ is the perimeter,
+Computes $\frac{4\pi a}{p^2}$, where $a$ is the solid area and $p$ is the perimeter,
 using the features \ref size_features_SolidArea and \ref size_features_Perimeter.
 This measure is in the range (0,1], with 1 for a perfect circle.
 For solid objects, it is the reciprocal of \ref shape_features_P2A, but for objects with holes,
@@ -162,14 +159,15 @@ See `dip::RadiusValues::Circularity`.
 \subsection shape_features_PodczeckShapes PodczeckShapes
 Computes the 5 Podczeck shape descriptors using the results of features \ref size_features_Size,
 \ref size_features_Feret and \ref size_features_Perimeter. The shape descriptors are:
- - 0: `Square`, similarity to a square, \f$\frac{a}{wh}\f$.
- - 1: `Circle`, similarity to a circle, \f$\frac{4a}{\pi h^2}\f$.
- - 2: `Triangle`, similarity to a triangle, \f$\frac{2a}{wh}\f$.
- - 3: `Ellipse`, similarity to an ellipse, \f$\frac{4a}{\pi wh}\f$.
- - 4: `Elongation`, object elongation, \f$\frac{p}{l}\f$.
 
-where \f$a\f$ is the object area, \f$p\f$ the perimeter, \f$l\f$ the largest Feret diameter, \f$w\f$ the
-smallest Feret diameter, and \f$h\f$ the diameter perpendicular to the smallest diameter
+ - 0: `Square`, similarity to a square, $\frac{a}{wh}$.
+ - 1: `Circle`, similarity to a circle, $\frac{4a}{\pi h^2}$.
+ - 2: `Triangle`, similarity to a triangle, $\frac{2a}{wh}$.
+ - 3: `Ellipse`, similarity to an ellipse, $\frac{4a}{\pi wh}$.
+ - 4: `Elongation`, object elongation, $\frac{p}{l}$.
+
+where $a$ is the object area, $p$ the perimeter, $l$ the largest Feret diameter, $w$ the
+smallest Feret diameter, and $h$ the diameter perpendicular to the smallest diameter
 (`PerpMin` value of the \ref size_features_Feret feature).
 
 \subsection shape_features_Solidity Solidity
@@ -191,8 +189,8 @@ connected component found for that label will be measured.
 \subsection shape_features_Eccentricity Eccentricity
 Aspect ratio of the best fit ellipse, computed using \ref dip::CovarianceMatrix::Eigenvalues::Eccentricity
 from the covariance matrix of the chain code. Eccentricity is defined as
-\f$\sqrt{1-\frac{\lambda_2}{\lambda_1}}\f$, with \f$\lambda_1\f$ the largest eigenvalue
-and \f$\lambda_2\f$ the smallest eigenvalue of the covariance matrix of the boundary
+$\sqrt{1-\frac{\lambda_2}{\lambda_1}}$, with $\lambda_1$ the largest eigenvalue
+and $\lambda_2$ the smallest eigenvalue of the covariance matrix of the boundary
 pixels of the object.
 
 Note that the chain code measures work only for 2D images, and expect objects to be a single
@@ -288,8 +286,8 @@ represent the distances to the lower image edge along each dimension.
 
 \subsection binary_moments_Mu Mu
 Elements of the inertia tensor of the object, which is composed of second order
-normalized central moments of the binary shape. For an image with \f$n\f$ dimensions,
-there are \f$\frac{1}{2}n(n+1)\f$ values. These are stored in the same order as symmetric
+normalized central moments of the binary shape. For an image with $n$ dimensions,
+there are $\frac{1}{2}n(n+1)$ values. These are stored in the same order as symmetric
 tensors are stored in an image (see \ref dip::Tensor::Shape).
 
 For more information, see \ref dip::MomentAccumulator::SecondOrder.
@@ -301,8 +299,8 @@ largest to smallest.
 
 \subsection binary_moments_MajorAxes MajorAxes
 Principal axes of the binary object, the eigenvectors of the tensor computed by
-feature \ref binary_moments_Mu. For an image with \f$n\f$ dimensions, there are \f$n^2\f$ values.
-The first \f$n\f$ values are the eigenvector associated to the largest eigenvalue, etc.
+feature \ref binary_moments_Mu. For an image with $n$ dimensions, there are $n^2$ values.
+The first $n$ values are the eigenvector associated to the largest eigenvalue, etc.
 
 \subsection binary_moments_DimensionsCube DimensionsCube
 Lengths of the sides of a rectangle (2D) or box (3D) with the same moments of inertia
@@ -339,7 +337,7 @@ Identical to feature \ref binary_moments_Center but using the grey-value image a
 \subsection grey_moments_GreyMu GreyMu
 Elements of the inertia tensor of the grey-weighted object, which is composed of second order
 normalized central moments of the binary shape weighted by the grey-value image's intensities.
-For an image with \f$n\f$ dimensions, there are \f$\frac{1}{2}n(n+1)\f$ values. These are stored
+For an image with $n$ dimensions, there are $\frac{1}{2}n(n+1)$ values. These are stored
 in the same order as symmetric tensors are stored in an image (see \ref dip::Tensor::Shape).
 
 For more information, see \ref dip::MomentAccumulator::SecondOrder.
@@ -357,8 +355,8 @@ Identical to feature \ref binary_moments_Inertia but using the grey-value image 
 
 \subsection grey_moments_GreyMajorAxes GreyMajorAxes
 Principal axes of the grey-weighted object, the eigenvectors of the tensor computed by
-feature \ref grey_moments_GreyMu. For an image with \f$n\f$ dimensions, there are \f$n^2\f$ values.
-The first \f$n\f$ values are the eigenvector associated to the largest eigenvalue, etc.
+feature \ref grey_moments_GreyMu. For an image with $n$ dimensions, there are $n^2$ values.
+The first $n$ values are the eigenvector associated to the largest eigenvalue, etc.
 
 Identical to feature \ref binary_moments_MajorAxes but using the grey-value image as weighting.
 `grey` must be scalar.

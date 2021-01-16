@@ -94,9 +94,9 @@ with `strides[0]`. In a 2D image, the pixel at coordinates (`x`,`y`) can be
 reached by (assuming \ref dip::DT_UINT8 data type):
 
 ```cpp
-    dip::uint8* origin = img.Origin();
-    dip::IntegerArray strides = img.Strides();
-    dip::uint8 value = *( origin + x * strides[0] + y * strides[1] );
+dip::uint8* origin = img.Origin();
+dip::IntegerArray strides = img.Strides();
+dip::uint8 value = *( origin + x * strides[0] + y * strides[1] );
 ```
 
 This concept naturally scales with image dimensionality. Strides can be
@@ -105,24 +105,22 @@ negative, and need not be ordered in any particular way. This allows a
 image, but still point to the same physical memory block. Here are some
 examples:
 
-\m_class{m-spaced-list}
-
-  * An `Image` object can contain a region of interest (ROI), a smaller
+- An `Image` object can contain a region of interest (ROI), a smaller
   region within a larger image. In this case, the strides are identical
   to those of the larger image, but the origin and the image size
   differs.
 
-  * An `Image` object can contain a subsampled image, where the strides
+- An `Image` object can contain a subsampled image, where the strides
   are a multiple of the strides of the original image.
 
-  * An `Image` object can contain a single slice of a 3D image, where the
+- An `Image` object can contain a single slice of a 3D image, where the
   strides are identical to the 3D image's strides, but the origin and
   the image size and dimensionality are different.
 
-  * An `Image` object can contain a mirrored image, where the stride in
+- An `Image` object can contain a mirrored image, where the stride in
   the mirrored dimension is negative, and the origin is different.
 
-  * An `Image` object can contain a rotated image. For example, rotating
+- An `Image` object can contain a rotated image. For example, rotating
   over 90 degrees involves swapping the two dimensions (i.e. swapping the
   sizes and strides associated to these dimensions), and inverting one
   of the dimensions (as in the case of the mirrored image).
@@ -182,7 +180,7 @@ matrices and triangular matrices.
 Given
 
 ```cpp
-    dip::Image img( { 10, 12, 20, 8, 18 }, 1, dip::DT_UINT16 );
+dip::Image img( { 10, 12, 20, 8, 18 }, 1, dip::DT_UINT16 );
 ```
 
 Then \ref Origin "`img.Origin()`" is a `void*` pointer to
@@ -191,15 +189,15 @@ This pointer needs to be cast to the type given by
 \ref DataType "img.DataType()" to be used, as in:
 
 ```cpp
-    (dip::uint16*)img.Origin() = 0;
+(dip::uint16*)img.Origin() = 0;
 ```
 
 A pixel's **offset** is the number of samples to move away from the origin
 to access that pixel:
 
 ```cpp
-    dip::uint16* ptr = (dip::uint16*)img.Origin();
-    ptr + offset = 1;
+dip::uint16* ptr = (dip::uint16*)img.Origin();
+ptr + offset = 1;
 ```
 
 Alternatively, it is possible to compute the pixel's pointer without casting
@@ -208,7 +206,7 @@ to the right data type (this leads to a more generic algorithm) by using the
 pointer arithmetic in bytes):
 
 ```cpp
-    (dip::uint8*)img.Origin() + offset * img.DataType().SizeOf();
+(dip::uint8*)img.Origin() + offset * img.DataType().SizeOf();
 ```
 
 This computation is performed by
@@ -219,11 +217,11 @@ can be negative also.
 The offset is computed from coordinates using the image's strides:
 
 ```cpp
-    dip::UnsignedArray coords { 1, 2, 3, 4, 5 };
-    dip::sint offset = 0;
-    for( dip::uint ii = 0; ii < img.Dimensionality(); ++ii ) {
-      offset += coords[ii] * img.Stride( ii );
-    }
+dip::UnsignedArray coords { 1, 2, 3, 4, 5 };
+dip::sint offset = 0;
+for( dip::uint ii = 0; ii < img.Dimensionality(); ++ii ) {
+  offset += coords[ii] * img.Stride( ii );
+}
 ```
 
 This computation is performed by
@@ -250,14 +248,14 @@ then along dimension 1, etc. The index computed from a pixel's coordinates is
 as follows:
 
 ```cpp
-    dip::UnsignedArray coords { 1, 2, 3, 4, 5 };
-    dip::uint dd = img.Dimensionality();
-    dip::uint index = 0;
-    while( dd > 0 ) {
-      --dd;
-      index *= img.Size( dd );
-      index += coords[dd];
-    }
+dip::UnsignedArray coords { 1, 2, 3, 4, 5 };
+dip::uint dd = img.Dimensionality();
+dip::uint index = 0;
+while( dd > 0 ) {
+  --dd;
+  index *= img.Size( dd );
+  index += coords[dd];
+}
 ```
 
 This computation is performed by \ref Index "`img.Index( coords )`".
@@ -290,11 +288,11 @@ defined in \ref "diplib/iterators.h"
 (see \ref using_iterators "Using iterators to implement filters"):
 
 ```cpp
-    dip::ImageIterator< dip::uint16 > it( img );
-    dip::uint16 ii = 0;
-    do {
-      *it = ii++;
-    } while( ++it );
+dip::ImageIterator< dip::uint16 > it( img );
+dip::uint16 ii = 0;
+do {
+  *it = ii++;
+} while( ++it );
 ```
 
 The functionality in the \ref dip::Framework namespace is the recommended way of
@@ -327,13 +325,13 @@ the properties individually, or use one of the constructors. For example,
 the two following images are the same:
 
 ```cpp
-    dip::Image img1;
-    img1.SetSizes( { 256, 256 } );
-    img1.SetDataType( dip::DT_UINT8 );
-    img1.SetTensorSizes( 1 );
-    img1.Forge();
+dip::Image img1;
+img1.SetSizes( { 256, 256 } );
+img1.SetDataType( dip::DT_UINT8 );
+img1.SetTensorSizes( 1 );
+img1.Forge();
 
-    dip::Image img2( dip::UnsingedArray{ 256, 256 }, 1, dip::DT_UINT8 );
+dip::Image img2( dip::UnsingedArray{ 256, 256 }, 1, dip::DT_UINT8 );
 ```
 
 The first method is more flexible, as it allows to set all properties
@@ -345,14 +343,14 @@ To create a new image with same sizes and tensor shape as another one,
 use the \ref Similar method:
 
 ```cpp
-    dip::Image img2 = img1.Similar();
+dip::Image img2 = img1.Similar();
 ```
 
 Again, the new image will have uninitialized pixel data. An optional second
 argument can be used to specify the data type of the new image:
 
 ```cpp
-    dip::Image img2 = img1.Similar( dip::DT_SCOMPLEX );
+dip::Image img2 = img1.Similar( dip::DT_SCOMPLEX );
 ```
 
 Both methods copy all image properties, including the strides array and the
@@ -364,13 +362,13 @@ to support the new properties. In function, these three sets of statements
 are equivalent:
 
 ```cpp
-    img2 = img1.Similar();
+img2 = img1.Similar();
 
-    img2.Strip();
-    img2.CopyProperties( img1 );
-    img2.Forge();
+img2.Strip();
+img2.CopyProperties( img1 );
+img2.Forge();
 
-    img2.ReForge( img1 );
+img2.ReForge( img1 );
 ```
 
 However, `ReForge` might not strip and forge if it is not necessary
@@ -386,8 +384,8 @@ initializer list, the image will be a vector image with as many samples
 as elements in the initializer list:
 
 ```cpp
-    dip::Image img1( 10 );
-    dip::Image img2( { 0, 1, 2, 3 } );
+dip::Image img1( 10 );
+dip::Image img2( { 0, 1, 2, 3 } );
 ```
 
 The assignment operator creates a copy of the image, but does not actually
@@ -395,7 +393,7 @@ copy the data. Instead, the new copy will share the data segment with the
 original image:
 
 ```cpp
-    img2 = img1;
+img2 = img1;
 ```
 
 Both `img1` and `img2` point at the same data, meaning that changing one
@@ -416,9 +414,9 @@ internally when the input image to a function needs to be reshaped for
 processing, but we do not want to modify the input image itself:
 
 ```cpp
-    dip::Image tmp = img1.QuickCopy();
-    tmp.Squeeze();
-    ...
+dip::Image tmp = img1.QuickCopy();
+tmp.Squeeze();
+...
 ```
 
 The copy constructor behaves the same way as the assignment operator, making
@@ -426,22 +424,22 @@ the new image share data with the input image. The following three statements
 all invoke the copy constructor:
 
 ```cpp
-    img2 = dip::Image( img1 );
-    dip::Image img3( img1 );
-    dip::Image img4 = img1;
+img2 = dip::Image( img1 );
+dip::Image img3( img1 );
+dip::Image img4 = img1;
 ```
 
 To make a copy of an image with its own copy of the data segment, use the
 \ref Copy method:
 
 ```cpp
-    img2.Copy( img1 );
+img2.Copy( img1 );
 ```
 
 or equivalently the \ref dip::Copy function:
 
 ```cpp
-    img2 = dip::Copy( img1 );
+img2 = dip::Copy( img1 );
 ```
 
 In both cases, `img2` will be identical to `img1`, with identical pixel values,
@@ -453,14 +451,14 @@ the existing data segment, casting to the target image's data type with clamping
 (see \ref "diplib/library/clamp_cast.h"):
 
 ```cpp
-    img2 = img1.Similar( dip::DT_UINT8 );
-    img2.Copy( img1 );
+img2 = img1.Similar( dip::DT_UINT8 );
+img2.Copy( img1 );
 ```
 
 Or equivalently:
 
 ```cpp
-    img2 = dip::Convert( img1, dip::DT_UINT8 );
+img2 = dip::Convert( img1, dip::DT_UINT8 );
 ```
 
 The \ref Convert method, as opposed to the \ref dip::Convert function, converts
@@ -476,8 +474,8 @@ cast to the image's data type with saturation (see \ref dip::clamp_cast). Note t
 the image must be forged:
 
 ```cpp
-    img1 = 10;
-    img2.Fill( 0 );
+img1 = 10;
+img2.Fill( 0 );
 ```
 
 Additionally, one can assign an initializer list to an image. The list should
@@ -485,8 +483,8 @@ have one element for each tensor element. Each pixel in the image will then
 be set to the tensor values in the initializer list:
 
 ```cpp
-    img2 = dip::Image( dip::UnsignedArray{ 256, 256 }, 10, dip::DT_SFLOAT );
-    img2 = { 1, 2, 3, 4 };
+img2 = dip::Image( dip::UnsignedArray{ 256, 256 }, 10, dip::DT_SFLOAT );
+img2 = { 1, 2, 3, 4 };
 ```
 
 `img2` will have all pixels set to the same vector `[ 1, 2, 3, 4 ]`.
@@ -519,46 +517,37 @@ with only those pixels.
 The following table summarizes the various indexing types discussed in detail in this
 section.
 
-\m_div{m-smaller-font}
-<table>
-<tr style='font-size:70%;'><th>&nbsp; <th> Single pixel <th> Tensor <th> Regular <th> Mask image <th> Set of pixels
-<tr style='font-size:70%;'><th>Syntax <td> `.At(dip::uint, ...)`<br>`.At(dip::UnsignedArray)` <td> `[dip::uint]`<br>`[dip::UnsignedArray]`<br>`[dip::Range]`<br>`.Diagonal()`<br>`.TensorRow(dip::uint)`<br>`.TensorColumn(dip::uint)` <td> `.At(dip::Range, ...)`<br>`.At(dip::RangeArray)` <td> `.At(dip::Image)` <td> `.At(dip::CoordinateArray)`<br>`.AtIndices(dip::UnsignedArray)`
-<tr style='font-size:70%;'><th>Output <td> `dip::Image::Pixel` <td> `dip::Image::View` <td> `dip::Image::View` <td> `dip::Image::View` <td> `dip::Image::View`
-<tr style='font-size:70%;'><th>Implicitly casts to `dip::Image` <td> No <td> Yes, with shared data <td> Yes, with shared data <td> Yes, with data copy <td> Yes, with data copy
-</table>
-\m_enddiv
-
-<br>
+&nbsp;                           | Single pixel                                       | Tensor                                                                                                                              | Regular                                          | Mask image          | Set of pixels
+---------------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|------------------------
+Syntax                           | `.At(dip::uint, ...)`<br>`.At(dip::UnsignedArray)` | `[dip::uint]`<br>`[dip::UnsignedArray]`<br>`[dip::Range]`<br>`.Diagonal()`<br>`.TensorRow(dip::uint)`<br>`.TensorColumn(dip::uint)` | `.At(dip::Range, ...)`<br>`.At(dip::RangeArray)` | `.At(dip::Image)`   | `.At(dip::CoordinateArray)`<br>`.AtIndices(dip::UnsignedArray)`
+Output                           | `dip::Image::Pixel`                                | `dip::Image::View`                                                                                                                  | `dip::Image::View`                               | `dip::Image::View`  | `dip::Image::View`
+Implicitly casts to `dip::Image` | No                                                 | Yes, with shared data                                                                                                               | Yes, with shared data                            | Yes, with data copy | Yes, with data copy
 
 !!! attention
     The result of an indexing operation can be used as input image to functions, but
     not as output image: output images are taken by reference, which cannot bind a temporary.
     Thus, the following does not compile:
 
-    ```cpp
+        :::cpp
         dip::Gauss( in[ 0 ], out[ 0 ] ); // Does not compile.
-    ```
 
     The output image must always be a `dip::Image` object with a name (i.e. a variable of type `dip::Image`):
 
-    ```cpp
+        :::cpp
         dip::Image channel = out[ 0 ];
         dip::Gauss( in[ 0 ], channel ); // Writes to `out` (assuming `channel` has the expected properties).
-    ```
 
     Do note that some indexing operations, when cast to a `dip::Image`, cause pixels to be copied, and
     hence cannot be used to write into the original image:
 
-    ```cpp
+        :::cpp
         dip::Image channel = out.At( mask );      // `mask` here is a binary image.
         dip::Threshold( in.At( mask ), channel ); // Warning! `out` is not modified.
-    ```
 
     Instead, copy the result of the operation directly into the result of the indexing operation:
 
-    ```cpp
+        :::cpp
         out.At( mask ) = dip::Threshold( in.At( mask )); // This does incur an extra copy.
-    ```
 
 
 \subsection tensor_indexing Tensor dimensions
@@ -569,29 +558,29 @@ tensor component from an image (remember that a color channel is a tensor compon
 For example:
 
 ```cpp
-    dip::Image red = colorIm[ 0 ];
+dip::Image red = colorIm[ 0 ];
 ```
 
 For a two-dimensional matrix it is possible to index using two values in an array:
 
 ```cpp
-    dip::Image out = tensorIm[ dip::UnsignedArray{ i, j } ];
+dip::Image out = tensorIm[ dip::UnsignedArray{ i, j } ];
 ```
 
 The indexing operation, as explained above, returns a \ref dip::Image::View object,
 which can be assigned to to modify the referenced pixels:
 
 ```cpp
-    colorIm[ 0 ] = colorIm[ 1 ];
+colorIm[ 0 ] = colorIm[ 1 ];
 ```
 
 When cast back to an image, the image created shares the pixels with the original image,
 meaning that it is possible to write to a channel in this way:
 
 ```cpp
-    dip::Image blueChannel = colorIm[ 2 ];
-    blueChannel.Protect();                         // Prevent `dip::Gauss` from reforging this image.
-    dip::Gauss( blueChannel, blueChannel, { 4 } ); // Modifies `colorIm`.
+dip::Image blueChannel = colorIm[ 2 ];
+blueChannel.Protect();                         // Prevent `dip::Gauss` from reforging this image.
+dip::Gauss( blueChannel, blueChannel, { 4 } ); // Modifies `colorIm`.
 ```
 
 Note that the single-index version of the tensor indexing uses linear indexing into
@@ -619,10 +608,10 @@ as the linear index is not necessarily related to the order in which pixels are 
 in memory.
 
 ```cpp
-    image1D.At( 5 );                           // Indexes pixel at coordinate 5
-    image2D.At( 0, 10 );                       // Indexes the pixel at coordinates (0, 10)
-    image2D.At( dip::UnsignedArray{ 0, 10 } ); // Indexes the pixel at coordinates (0, 10)
-    image2D.At( 20 );                          // Indexes the pixel with linear index 20
+image1D.At( 5 );                           // Indexes pixel at coordinate 5
+image2D.At( 0, 10 );                       // Indexes the pixel at coordinates (0, 10)
+image2D.At( dip::UnsignedArray{ 0, 10 } ); // Indexes the pixel at coordinates (0, 10)
+image2D.At( 20 );                          // Indexes the pixel with linear index 20
 ```
 
 These forms result in an object of type \ref dip::Image::Pixel. The object contains a
@@ -630,7 +619,7 @@ reference to the original image pixels, so writing to the reference changes the 
 values in the image:
 
 ```cpp
-    image.At( 0, 10 ) += 1;
+image.At( 0, 10 ) += 1;
 ```
 
 The single-pixel forms of \ref At have an alternative, templated form. In that
@@ -638,9 +627,9 @@ form, they return a \ref dip::Image::CastPixel instead, which is identical to a
 \ref dip::Image::Pixel, but implicitly casts to any chosen type. Thus:
 
 ```cpp
-    int v1 = image.At( 0, 10 );             // Does not compile, no implicit conversion to `int`.
-    int v2 = image.At< int >( 0, 10 );      // OK
-    int v3 = image.At( 0, 10 ).As< int >(); // Same as `v2`.
+int v1 = image.At( 0, 10 );             // Does not compile, no implicit conversion to `int`.
+int v2 = image.At< int >( 0, 10 );      // OK
+int v3 = image.At( 0, 10 ).As< int >(); // Same as `v2`.
 ```
 
 This implicit cast makes its use a little simpler in a setting combined with numbers
@@ -650,17 +639,17 @@ to access (read or write) the pixel as other types. For example, this code will 
 on the results:
 
 ```cpp
-    dip::Image image( { 256, 256 }, 1, dip::DT_SCOMPLEX );
-    image.At< dip::uint8 >( 85, 43 ) = dip::dcomplex{ 1.0, -3.0 );
-    std::cout << image.At< dip::sint32 >( 85, 43 );
+dip::Image image( { 256, 256 }, 1, dip::DT_SCOMPLEX );
+image.At< dip::uint8 >( 85, 43 ) = dip::dcomplex{ 1.0, -3.0 );
+std::cout << image.At< dip::sint32 >( 85, 43 );
 ```
 
 Tensor and spatial indexing can be combined in either order, but the results are
 not identical:
 
 ```cpp
-    image.At( 0, 10 )[ 1 ];
-    image[ 1 ].At( 0, 10 );
+image.At( 0, 10 )[ 1 ];
+image[ 1 ].At( 0, 10 );
 ```
 
 The first line above uses `[]` to index into the \ref dip::Image::Pixel object, yielding
@@ -689,9 +678,9 @@ step value. That is, a range indicates a portion of an image line, with optional
 subsampling. For example, indexing into a 1D image:
 
 ```cpp
-    image1D.At( dip::Range{ 5 } );        // Indexes pixel at coordinate 5
-    image1D.At( dip::Range{ 0, 10 } );    // Indexes the first 11 pixels
-    image1D.At( dip::Range{ 0, -1, 2 } ); // Indexes every second pixel
+image1D.At( dip::Range{ 5 } );        // Indexes pixel at coordinate 5
+image1D.At( dip::Range{ 0, 10 } );    // Indexes the first 11 pixels
+image1D.At( dip::Range{ 0, -1, 2 } ); // Indexes every second pixel
 ```
 
 Note that negative values index from the end, without needing to know the exact
@@ -705,15 +694,15 @@ can be assigned to to change the referenced pixels; and when cast back to a `dip
 yields an image that shares data with the original image. For example:
 
 ```cpp
-    image.At( dip::Range{ 0, 10 }, dip::Range{ 20, 30 } ) += 1;
+image.At( dip::Range{ 0, 10 }, dip::Range{ 20, 30 } ) += 1;
 ```
 
 Tensor and spatial indexing can be combined in either order, with identical
 results:
 
 ```cpp
-    image.At( { 0, 10 }, { 20, 30 } )[ 1 ];
-    image[ 1 ].At( { 0, 10 }, { 20, 30 } );
+image.At( { 0, 10 }, { 20, 30 } )[ 1 ];
+image[ 1 ].At( { 0, 10 }, { 20, 30 } );
 ```
 
 The method \ref Cropped is a convenience function to extract a view to a
@@ -725,9 +714,10 @@ copies the data over.
 \subsection irregular_indexing Irregular indexing (mask image, arbitrary set of pixels)
 
 An arbitrary subset of pixels can be indexed in three ways, using one of:
- * a mask image
- * a list of pixel coordinates
- * a list of linear indices into the image
+
+- a mask image
+- a list of pixel coordinates
+- a list of linear indices into the image
 
 The first two forms are again available through the \ref At method, the
 third one through the \ref AtIndices method (since the input argument would
@@ -740,15 +730,15 @@ be modified without affecting the original image. This is by necessity, as the `
 object cannot reference samples that are not stored in memory on a regular grid.
 
 ```cpp
-    image.At( mask ) += 1;
-    dip::Image out = image.At( mask );
-    out.Fill( 0 ); // Careful! Does not affect `image`.
+image.At( mask ) += 1;
+dip::Image out = image.At( mask );
+out.Fill( 0 ); // Careful! Does not affect `image`.
 ```
 
 Another typical example:
 
 ```cpp
-    image.At( mask ) = otherImage.At( mask );
+image.At( mask ) = otherImage.At( mask );
 ```
 
 
@@ -825,21 +815,19 @@ be stripped (freed) or reforged (reallocated). Furthermore, when the protect
 flag is set, the assignment operator will perform a deep copy. For example:
 
 ```cpp
-    dip::Image img1( dip::UnsignedArray{ 256, 256 }, 3, dip::DT_SFLOAT );
-    img1.Protect();
-    //img1.Strip();  // Throws!
-    img1 = img2;     // Equivalent to: `img1.Copy( img2 )`.
+dip::Image img1( dip::UnsignedArray{ 256, 256 }, 3, dip::DT_SFLOAT );
+img1.Protect();
+//img1.Strip();  // Throws!
+img1 = img2;     // Equivalent to: `img1.Copy( img2 )`.
 ```
 
 The protect flag has two purposes:
 
-\m_class{m-spaced-list}
-
-1. To prevent an image from being reforged, for example when the data segment
+**First:** To prevent an image from being reforged, for example when the data segment
 is allocated in a special way and one needs to ensure it stays that way. In this
 case, it functions as a warning.
 
-2. To provide a simple means of specifying the data type for the output image
+**Second:** To provide a simple means of specifying the data type for the output image
 or a filter. Most filters and operations in
 *DIPlib* choose a specific data type for their output based on the input data
 type, and in such a way that little precision is lost. For example, the Gaussian
@@ -852,21 +840,21 @@ functions will not modify its data type. Thus, you can set the output image's
 data type, protect it, and receive the result of the filter in that data type:
 
 ```cpp
-    dip::Image img = ...
-    dip::Image out;
-    out.SetDataType( dip::DT_SINT16 );
-    out.Protect();
-    dip::Gauss( img, out, { 4 } );
-    // `out` is forged with correct sizes to receive filter result, and as 16-bit integer.
+dip::Image img = ...
+dip::Image out;
+out.SetDataType( dip::DT_SINT16 );
+out.Protect();
+dip::Gauss( img, out, { 4 } );
+// `out` is forged with correct sizes to receive filter result, and as 16-bit integer.
 ```
 
 This is especially suitable for in-place operations where we want to receive the
 output in the same data segment as the input:
 
 ```cpp
-    dip::Image img = ...
-    img.Protect();
-    dip::Gauss( img, img, { 4 } );
+dip::Image img = ...
+img.Protect();
+dip::Gauss( img, img, { 4 } );
 ```
 
 If the filter is called with a protected, forged image as output, as is the case
@@ -910,15 +898,15 @@ and \ref math_comparison for a full list of these functions.
 For example, to add two images `a` and `b`, one can simply do:
 
 ```cpp
-    dip::Image c = a + b;
+dip::Image c = a + b;
 ```
 
 But it is also possible to control the output image by using the \ref dip::Add
 function:
 
 ```cpp
-    dip::Image c;
-    dip::Add( a, b, c, dip::DT_SINT32 );
+dip::Image c;
+dip::Add( a, b, c, dip::DT_SINT32 );
 ```
 
 The fourth argument specifies the data type of the output image. The computation
@@ -933,7 +921,7 @@ As is true for most image processing functions in *DIPlib* (see \ref design_func
 the statement above is identical to
 
 ```cpp
-    dip::Image c = dip::Add( a, b, dip::DT_SINT32 );
+dip::Image c = dip::Add( a, b, dip::DT_SINT32 );
 ```
 
 However, the former version allows for writing to already-allocated memory space
@@ -942,12 +930,14 @@ in image `c`, or to an image with an external interface (see \ref external_inter
 For in-place addition, use
 
 ```cpp
-    dip::Add( a, b, a, a.DataType() );
+dip::Add( a, b, a, a.DataType() );
 ```
 
 or simply
 
-    a += b;
+```cpp
+a += b;
+```
 
 All dyadic operations (arithmetic, logical, comparison) perform \ref singleton_expansion.
 They also correctly handle tensor images of any shape. For example, it is possible
@@ -1003,34 +993,24 @@ size in a particular dimension is not set, it is always presumed to be of size 1
 
 There are three ways in which the pixel size can be used:
 
-\m_class{m-spaced-list}
+- The measurement function will return its measurements as physical quantities,
+  using the pixel sizes, if known, to derive those from measurements in pixels.
 
-<ol>
-<li>
-The measurement function will return its measurements as physical quantities,
-using the pixel sizes, if known, to derive those from measurements in pixels.
-</li>
-<li>
-The `dip::Image::PhysicalToPixels` method converts a filter size in physical
-units to one in pixels, suitable to pass to a filtering function. For example,
-to apply a filter with a sigma of 1 micron to an image:
+- The `dip::Image::PhysicalToPixels` method converts a filter size in physical
+  units to one in pixels, suitable to pass to a filtering function. For example,
+  to apply a filter with a sigma of 1 micron to an image:
 
-```cpp
-    dip::PhysicalQuantityArray fsz_phys{ 1 * dip::PhysicalQuantity::Micrometer() };
-    dip::Filter( img, img, img.PhysicalToPixels( fsz_phys ));
-```
-</li>
-<li>
-The `dip::Image::PixelsToPhysical` method converts coordinates in pixels to
-coordinates in physical units. For example, to determine the position in
-physical units of a pixel w.r.t. the top left pixel:
+        :::cpp
+        dip::PhysicalQuantityArray fsz_phys{ 1 * dip::PhysicalQuantity::Micrometer() };
+        dip::Filter( img, img, img.PhysicalToPixels( fsz_phys ));
 
-```cpp
-    dip::FloatArray pos_pix{ 40, 24 };
-    dip::PhysicalQuantityArray pos_phys = img.PixelsToPhysical( pos_pix );
-```
-</li>
-</ol>
+- The `dip::Image::PixelsToPhysical` method converts coordinates in pixels to
+  coordinates in physical units. For example, to determine the position in
+  physical units of a pixel w.r.t. the top left pixel:
+
+        :::cpp
+        dip::FloatArray pos_pix{ 40, 24 };
+        dip::PhysicalQuantityArray pos_phys = img.PixelsToPhysical( pos_pix );
 
 It is currently possible to add, subtract, multiply and divide two physical quantities,
 and elevate a physical quantity to an integer power. Other operations should be
@@ -1043,8 +1023,6 @@ added as necessary.
 
 It is possible to create `dip::Image` objects whose pixels are not allocated
 by *DIPlib* using two different methods:
-
-\m_class{m-spaced-list}
 
 1. Create an image around an existing data segment. This is used in the case
 when passing data from other imaging libraries, or from interpreted languages
@@ -1078,16 +1056,16 @@ For example, in this bit of code we take the data of a `std::vector` and build a
 image around it, which we can use as both an input or an output image:
 
 ```cpp
-    std::vector<unsigned char> src( 256 * 256, 0 ); // existing data
-    dip::Image img(
-       NonOwnedRefToDataSegment( src.data() ),
-       src.data(),    // origin
-       dip::DT_UINT8, // dataType
-       { 256, 256 },  // sizes
-       { 1, 256 }     // strides
-    );
-    img.Protect();          // Prevent `dip::Gauss` from reallocating its output image.
-    dip::Gauss( img, img ); // Apply Gaussian filter, output is written to input array.
+std::vector<unsigned char> src( 256 * 256, 0 ); // existing data
+dip::Image img(
+   NonOwnedRefToDataSegment( src.data() ),
+   src.data(),    // origin
+   dip::DT_UINT8, // dataType
+   { 256, 256 },  // sizes
+   { 1, 256 }     // strides
+);
+img.Protect();          // Prevent `dip::Gauss` from reallocating its output image.
+dip::Gauss( img, img ); // Apply Gaussian filter, output is written to input array.
 ```
 
 The first argument to this constructor is a \ref dip::DataSegment object, which is just
@@ -1100,15 +1078,15 @@ In the example below, we do the same as above, but we transfer ownership of the
 `std::vector` is deleted:
 
 ```cpp
-    auto src = new std::vector<unsigned char>( 256 * 256, 0 ); // existing data
-    dip::Image img(
-       dip::DataSegment{ src }, // transfer ownership of the data
-       src->data(),   // origin
-       dip::DT_UINT8, // dataType
-       { 256, 256 },  // sizes
-       { 1, 256 }     // strides
-    );
-    dip::Gauss( img, img ); // Apply Gaussian filter, output is written to a different data segment.
+auto src = new std::vector<unsigned char>( 256 * 256, 0 ); // existing data
+dip::Image img(
+   dip::DataSegment{ src }, // transfer ownership of the data
+   src->data(),   // origin
+   dip::DT_UINT8, // dataType
+   { 256, 256 },  // sizes
+   { 1, 256 }     // strides
+);
+dip::Gauss( img, img ); // Apply Gaussian filter, output is written to a different data segment.
 ```
 
 After the call to \ref dip::Gauss, `*src` no longer exists. `dip::Gauss` has reforged
@@ -1122,11 +1100,11 @@ assumed to be normal (see \ref normal_strides).
 The data pointer must be of any of the allowed data types:
 
 ```cpp
-    std::vector<unsigned char> src( 256 * 256, 0 ); // existing data
-    dip::Image img(
-       src.data(),    // origin
-       { 256, 256 }   // sizes
-    );
+std::vector<unsigned char> src( 256 * 256, 0 ); // existing data
+dip::Image img(
+   src.data(),    // origin
+   { 256, 256 }   // sizes
+);
 ```
 
 \subsection external_interface Define an image's allocator
@@ -1167,32 +1145,32 @@ such an image. `Forge` will then allocate the data itself. If you prefer the
 forging to fail, simply throw an exception.
 
 ```cpp
-    class VectorInterface : public dip::ExternalInterface {
-       public:
-          virtual dip::DataSegment AllocateData(
-                void*& origin,
-                dip::DataType datatype,
-                dip::UnsignedArray const& sizes,
-                dip::IntegerArray& strides,
-                dip::Tensor const& tensor,
-                dip::sint& tstride
-          ) override {
-             if(( sizes.size() != 2 ) || ( !tensor.IsScalar() )) {
-                return nullptr; // We do not want to handle such images.
-             }
-             auto data = new std::vector< unsigned char >( sizes[ 0 ] * sizes[ 1 ], 0 );
-             origin = data.data();
-             strides = dip::UnsignedArray{ 1, sizes[ 0 ] };
-             tstride = 1;
-             return dip::DataSegment{ data };
-          }
-    }
+class VectorInterface : public dip::ExternalInterface {
+   public:
+      virtual dip::DataSegment AllocateData(
+            void*& origin,
+            dip::DataType datatype,
+            dip::UnsignedArray const& sizes,
+            dip::IntegerArray& strides,
+            dip::Tensor const& tensor,
+            dip::sint& tstride
+      ) override {
+         if(( sizes.size() != 2 ) || ( !tensor.IsScalar() )) {
+            return nullptr; // We do not want to handle such images.
+         }
+         auto data = new std::vector< unsigned char >( sizes[ 0 ] * sizes[ 1 ], 0 );
+         origin = data.data();
+         strides = dip::UnsignedArray{ 1, sizes[ 0 ] };
+         tstride = 1;
+         return dip::DataSegment{ data };
+      }
+}
 ```
 
 See the source code to \ref dml::MatlabInterface for a more realistic example
 of this feature. That class stores the data in such a way that ownership can
 be retrieved from the shared pointer, so that the data array can be used by
-MATLAB after the `dip::Image` object that originally owned it has been
+*MATLAB* after the `dip::Image` object that originally owned it has been
 destroyed.
 
 
@@ -1212,9 +1190,9 @@ physically copied). This will cause an algorithm to read the same value,
 no matter how many steps it takes along this dimension. For example:
 
 ```cpp
-    dip::Image img1( dip::UnsignedArray{ 50, 1, 60 } );
-    dip::Image img2( dip::UnsignedArray{ 50, 30 } );
-    dip::Image img3 = img1 + img2;
+dip::Image img1( dip::UnsignedArray{ 50, 1, 60 } );
+dip::Image img2( dip::UnsignedArray{ 50, 30 } );
+dip::Image img3 = img1 + img2;
 ```
 
 Here, the dimension array for `img2` will be extended to `{ 50, 30, 1 }`

@@ -202,7 +202,7 @@ window and causes your keystrokes to be send to the command window. To
 enable the keyboard again, use the menu item "Enable keyboard" under the
 "Actions" menu. With the command
 
-```m
+```matlab
 dipsetpref('EnableKeyboard','off')
 ```
 
@@ -244,7 +244,7 @@ The position of a figure window can be changed by manipulating its
 `'Position'` property, which is defined by an array with four values:
 `left`, `bottom`, `width` and `height`.
 
-```m
+```matlab
 set(handle,'Position',[left,bottom,width,heigth]);
 ```
 
@@ -252,7 +252,7 @@ The coordinates for figure windows start at the bottom-left corner of
 the screen, and are in screen pixels by default. This can be changed to
 `centimeters`, `inches` and other units:
 
-```m
+```matlab
 set(handle,'Units','points');
 ```
 
@@ -260,7 +260,7 @@ See [*MATLAB* Function Reference](https://www.mathworks.com/help/releases/R2017a
 for more information on figure window properties. You can see a local
 copy of this page by typing from within MATLAB
 
-```m
+```matlab
 web(fullfile(docroot,'matlab/ref/figure-properties.html'))
 ```
 
@@ -269,7 +269,7 @@ used to set the position of a figure window at the same time that it is
 created. This parameter comes at the end of the parameter list, and is
 the same array used for the `'Position'` property:
 
-```m
+```matlab
 dipfig('a',[400,600,256,256]);
 ```
 

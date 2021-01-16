@@ -51,7 +51,7 @@ to the command line. When finished, select the same menu item again (its
 text will have changed to "Stop recording macro"). Typing the macro name
 on the command line:
 
-```m
+```matlab
 macro
 ```
 
@@ -70,7 +70,7 @@ An optional second argument indicates the
 display range required, and allows more flexibility than the options in
 the "Display" menu. The general form for `dipshow` is:
 
-```m
+```matlab
 dipshow(a,range,colmap)
 ```
 
@@ -101,7 +101,7 @@ The string `'log'` causes the image to be stretched logarithmically.
 
 Examples:
 
-```m
+```matlab
 dipshow(a,'lin',summer(256))
 dipshow(a,[0,180],'periodic')
 ```
@@ -116,7 +116,7 @@ registered, a new figure window is opened for the image. To overrule
 this behavior, it is possible to specify a figure handle in the
 parameter list of `dipshow`:
 
-```m
+```matlab
 dipshow(handle,image,'lin')
 ```
 
@@ -137,7 +137,7 @@ call to `dipmapping`. In a single command, you can combine one setting
 for each of the four categories: range, colormap, complex-to-real
 mapping, the slicing direction and the global stretching for 3D images.
 
-```m
+```matlab
 dipmapping(h,range,colmap,torealstr,slicingstr,globalstr)
 ```
 
@@ -148,7 +148,7 @@ in \ref sec_dum_functions_dipshow "": a two-value numeric array or a string.
 `colmap` can contain any of the strings described for `dipshow`, but not
 a colormap. To specify a custom colormap, use
 
-```m
+```matlab
 dipmapping(h,'colormap',summer(256))
 ```
 
@@ -177,7 +177,7 @@ pixel. An argument gives the zoom factor. For example, `200` would make
 the image twice as large on the screen, but with the 1-to-1 aspect
 ratio:
 
-```m
+```matlab
 diptruesize(200)
 ```
 
@@ -208,7 +208,7 @@ variable is always displayed in that same window. If a variable is not
 linked to any window, a new one will be opened to display it. The
 command
 
-```m
+```matlab
 dipfig a
 ```
 
@@ -219,7 +219,7 @@ to display the variable. It is possible to link more than one variable
 to the same window, like in the next example (which uses the functional
 form):
 
-```m
+```matlab
 h = dipfig('a')
 dipfig(h,'b')
 ```
@@ -232,7 +232,7 @@ windows for 'unregistered' variables.
 
 To remove the links, type
 
-```m
+```matlab
 dipfig -unlink
 ```
 
@@ -253,27 +253,27 @@ All toolbox preferences are stored in memory, and are only accessible
 through the `dipsetpref` and `dipgetpref` functions. They are listed in
 \ref sec_dum_customizing_dippref.
 
-```m
+```matlab
 v = dipgetpref('name');
 ```
 
 retrieves the value of the named preference. Two special forms print all
 current preferences and all factory settings to the command window:
 
-```m
+```matlab
 dipgetpref
 dipgetpref factory
 ```
 
 Setting a preference is similar:
 
-```m
+```matlab
 dipsetpref('name',value)
 ```
 
 Furthermore, it is possible to set many preferences at once:
 
-```m
+```matlab
 dipsetpref('name1',value1,'name2',value2,'name3',value3,...)
 ```
 
@@ -305,7 +305,7 @@ The largest part of the toolbox is made out of the image processing
 functions. Most of them are listed in the menu system of the GUI, and
 all are listed by typing
 
-```m
+```matlab
 help DIPimage
 ```
 

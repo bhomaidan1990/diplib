@@ -16,7 +16,7 @@
 \comment limitations under the License.
 
 
-\page dipimage_user_manual DIPimage User Manual
+\page dipimage_user_manual *DIPimage* User Manual
 
 1. \subpage sec_dum_introduction
 2. \subpage sec_dum_installing

@@ -16,15 +16,15 @@
 \comment limitations under the License.
 
 
-\page sec_dum_matlab_compiler DIPimage and the MATLAB Compiler
+\page sec_dum_matlab_compiler *DIPimage* and the *MATLAB Compiler*
 
 !!! warning
     This section hasn't been updated yet for *DIPimage 3*.
     Most of the information here is no longer correct.
 
-\section sec_dum_matlab_compiler_intro The MATLAB Compiler
+\section sec_dum_matlab_compiler_intro The *MATLAB Compiler*
 
-Since *MATLAB* version 7.0 (Release 14), the *MATLAB* Compiler no longer
+Since *MATLAB* version 7.0 (Release 14), the *MATLAB Compiler* no longer
 generates C or C++ code from M-files. Instead, it packages all M-files
 and MEX-files into a *Component Technology File* (CTF) archive,
 generates a small stub executable, and requires the end user to install
@@ -48,14 +48,14 @@ application. Therefore, even though the code is not truly compiled, your
 code is reasonably well protected against reverse-engineering.
 
 The explanations below are for Linux/UNIX systems. If you use Windows,
-similar issues will have to be taken into account. The [*MATLAB* Compiler
+similar issues will have to be taken into account. The [*MATLAB Compiler*
 User's Guide](https://www.mathworks.com/help/pdf_doc/compiler/compiler.pdf)
 contains all the information needed to compile an M-file that uses
 *DIPimage*.
 
-\section sec_dum_matlab_compiler_compiling Compiling an M-file that uses DIPimage
+\section sec_dum_matlab_compiler_compiling Compiling an M-file that uses *DIPimage*
 
-Please first read the *MATLAB* Compiler User's Guide, and make sure you
+Please first read the *MATLAB Compiler* User's Guide, and make sure you
 are able to generate the `magicsquare.m` stand-alone example application
 using the `mcc` command (not through the `deploytool` GUI, since the
 explanations below assume you are familiar with `mcc`).
@@ -70,7 +70,7 @@ through the `mcc` command line. Second, instead of calling
 `dip_initialise` searches for the correct version of the *DIPimage*
 toolbox to use, depending on the *MATLAB* version you are running. It then
 adds the necessary paths and calls `dip_initialise_libs`. Since this
-process doesn't work with the *MATLAB* Compiler, you will need to do these
+process doesn't work with the *MATLAB Compiler*, you will need to do these
 two steps separately.
 
 Hence, you need to create a special version of your `startup.m` file in
@@ -124,7 +124,7 @@ The CTF file created by `mcc` needs either the exact same version of
 *MATLAB*, or the MCR created with that version, to run. It will also need
 the three *DIPlib* shared libraries `libdip.so`, `libdipio.so` and
 `libdml_mlvX_X.so` (the name of this last SO file should match the
-directory name given as path to the *MATLAB* Compiler). The end-user needs
+directory name given as path to the *MATLAB Compiler*). The end-user needs
 to install these three libraries and adjust the `LD_LIBRARY_PATH`
 environment variable prior to starting the executable.
 

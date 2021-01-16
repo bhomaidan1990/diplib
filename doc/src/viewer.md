@@ -151,7 +151,7 @@ dimension relatively.
 \subsubsection interaction_labels Slice labels
 
 Right-clicking on a slice label changes the visualized dimension for that
-projection. In the special case of selecting '-', a 1d slice is shown.
+projection. In the special case of selecting '-', a 1D slice is shown.
 Note that the horizontal dimensions of the nominal XY and XZ slices are
 necessarily the same, as are the vertical dimensions of the nominal XY and
 YZ slices.
@@ -171,42 +171,42 @@ shared between the windows. Right-click to unlink.
 
 There are also a few keyboard shortcuts:
 
-- \m_class{m-label m-warning} **D** and \m_class{m-label m-warning} **A**:
+- **D**{: .m-label .m-warning} and **A**{: .m-label .m-warning}:
   Step through the first image dimension.
 
-- \m_class{m-label m-warning} **S** and \m_class{m-label m-warning} **W**:
+- **S**{: .m-label .m-warning} and **W**{: .m-label .m-warning}:
   Step through the second image dimension.
 
-- \m_class{m-label m-warning} **N** and \m_class{m-label m-warning} **P**:
+- **N**{: .m-label .m-warning} and **P**{: .m-label .m-warning}:
   Step through the third image dimension.
 
-- \m_class{m-label m-warning} **F** and \m_class{m-label m-warning} **B**:
+- **F**{: .m-label .m-warning} and **B**{: .m-label .m-warning}:
   Step through the fourth image dimension.
 
-- \m_class{m-label m-warning} **1** through \m_class{m-label m-warning} **0**:
+- **1**{: .m-label .m-warning} through **0**{: .m-label .m-warning}:
   Select tensor element (first element is leftmost).
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **1**:
+- **Ctrl**{: .m-label .m-warning} + **1**{: .m-label .m-warning}:
   Sets a 1:1 image pixel to screen pixel zoom for all dimensions.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **F**:
+- **Ctrl**{: .m-label .m-warning} + **F**{: .m-label .m-warning}:
   Sets the image to fill the screen area, but maintaining the XY aspect
   ratio. The zoom of non-visualized dimensions is reset to 1.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **L**:
+- **Ctrl**{: .m-label .m-warning} + **L**{: .m-label .m-warning}:
   Sets linear mapping between global minimum and maximum values.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **N**:
+- **Ctrl**{: .m-label .m-warning} + **N**{: .m-label .m-warning}:
   Creates a linked clone of the current viewer. Convenient when wanting to
   display different tensor elements, mappings, etc.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **R**:
+- **Ctrl**{: .m-label .m-warning} + **R**{: .m-label .m-warning}:
   Resets the projection ROI.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **W**:
+- **Ctrl**{: .m-label .m-warning} + **W**{: .m-label .m-warning}:
   Closes the current window.
 
-- \m_class{m-label m-warning} **Ctrl** + \m_class{m-label m-warning} **Shift** + \m_class{m-label m-warning} **W**:
+- **Ctrl**{: .m-label .m-warning} + **Shift**{: .m-label .m-warning} + **W**{: .m-label .m-warning}:
   Closes all windows.
 
 \section viewer_example Usage example
@@ -215,21 +215,21 @@ The viewer is most easily used through the \ref dip::viewer namespace. Simply
 call
 
 ```cpp
-    dip::viewer::Show( image );
+dip::viewer::Show( image );
 ```
 
 after including \ref "dipviewer.h" to show an image in the slice viewer. After
 all images have been shown this way, you can call
 
 ```cpp
-    dip::viewer::Spin();
+dip::viewer::Spin();
 ```
 
 to enable mouse interaction. If you wish to continue your program, you must
 instead call
 
 ```cpp
-    dip::viewer::Draw();
+dip::viewer::Draw();
 ```
 
 periodically. Make sure to call \ref dip::viewer::Spin when you're done to

@@ -38,7 +38,7 @@ measurement. The array returned is of type `double`.
 
 For example,
 
-```m
+```matlab
 msr(11:15).Size
 ```
 
@@ -47,7 +47,7 @@ objects number 11 through 15. Note that element 11 doesn't need to be
 placed 11th in the list of measurements. If only objects starting at 10
 were measured, the above example would be equivalent to
 
-```m
+```matlab
 msr.Size(2:6)
 ```
 
@@ -102,7 +102,7 @@ In some cases, objects in different images have the same labels. These
 need to be changed before concatenation is possible. This is done by the
 following syntax:
 
-```m
+```matlab
 msr.id = 51:73;
 ```
 
@@ -115,7 +115,7 @@ value on all three channels of an RGB image. To join these measurements
 into a single object, it is possible to add a prefix to the names of the
 measurements:
 
-```m
+```matlab
 msr1.prefix = 'red_';
 msr2.prefix = 'green_';
 msr3.prefix = 'blue_';
@@ -124,7 +124,7 @@ msr = [msr1,msr2,msr3];
 
 Note that this prefix cannot be changed, only added to. For example,
 
-```m
+```matlab
 msr.prefix = 'A';
 msr.prefix = 'B';
 ```

@@ -16,7 +16,7 @@
 \comment limitations under the License.
 
 
-\page sec_dum_installing Installing DIPimage
+\page sec_dum_installing Installing *DIPimage*
 
 This toolbox requires *MATLAB* R2008a (version 7.6) or later, though some functionality
 might require newer versions. The official distributions are compiled with much more
@@ -39,7 +39,7 @@ To install *DIPimage*, simply run the installation program and follow the
 directions in it. The tool will tell you to start *MATLAB* and type the
 command
 
-```m
+```matlab
 run('C:\Program Files\dip\dipstart.m')
 ```
 
@@ -62,7 +62,7 @@ dependencies. You can also
 
 Once all the binaries are compiled, start *MATLAB* and type:
 
-```m
+```matlab
 addpath('C:\dip\share\DIPimage')
 setenv('PATH',['C:\dip\bin',';',getenv('PATH')]);
 ```
@@ -104,13 +104,13 @@ Note that you need to have *MATLAB* installed on the build machine to build *DIP
 
 Once all the binaries are compiled, start *MATLAB* and type:
 
-```m
+```matlab
 addpath('/usr/share/DIPimage')
 ```
 
 or:
 
-```m
+```matlab
 addpath('/home/uname/share/DIPimage')
 ```
 

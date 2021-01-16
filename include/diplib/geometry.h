@@ -697,15 +697,15 @@ inline Image RotationMatrix3D( FloatArray const& vector, dfloat angle ) {
 /// matrix using homogeneous coordinates, but with the bottom row removed (which is expected
 /// to be `{0,0,1}` in 2D or `{0,0,0,1}` in 3D). The values are stored in column-major order:
 ///
-/// ```txt
-///            ⎡ matrix[0]  matrix[2]  matrix[4] ⎤
-///     T_2D = ⎢ matrix[1]  matrix[3]  matrix[5] ⎥
-///            ⎣    0          0          1      ⎦
+/// ```text
+///        ⎡ matrix[0]  matrix[2]  matrix[4] ⎤
+/// T_2D = ⎢ matrix[1]  matrix[3]  matrix[5] ⎥
+///        ⎣    0          0          1      ⎦
 ///
-///            ⎡ matrix[0]  matrix[3]  matrix[6]  matrix[ 9] ⎤
-///     T_3D = ⎢ matrix[1]  matrix[4]  matrix[7]  matrix[10] ⎥
-///            ⎢ matrix[2]  matrix[5]  matrix[8]  matrix[11] ⎥
-///            ⎣    0          0          0          1       ⎦
+///        ⎡ matrix[0]  matrix[3]  matrix[6]  matrix[ 9] ⎤
+/// T_3D = ⎢ matrix[1]  matrix[4]  matrix[7]  matrix[10] ⎥
+///        ⎢ matrix[2]  matrix[5]  matrix[8]  matrix[11] ⎥
+///        ⎣    0          0          0          1       ⎦
 /// ```
 ///
 /// The coordinates of each pixel in `in` (the origin of the coordinate system is the central pixel,
@@ -800,9 +800,9 @@ inline Image LogPolarTransform2D(
 /// can be given in `in`. If `in` has fewer images, the corresponding locations in `out` will be zero. If `in`
 /// has 6 images, they will be placed as follows:
 ///
-/// ```txt
-///    | in[0], in[1], in[2] |
-///    | in[3], in[4], in[5] |
+/// ```text
+/// | in[0], in[1], in[2] |
+/// | in[3], in[4], in[5] |
 /// ```
 ///
 /// That is, images are tiled row-wise, from left to right and then top to bottom. `tiling` can have any number

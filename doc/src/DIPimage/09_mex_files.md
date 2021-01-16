@@ -16,7 +16,7 @@
 \comment limitations under the License.
 
 
-\page sec_dum_mex_files Writing MEX-files that use DIPlib
+\page sec_dum_mex_files Writing MEX-files that use *DIPlib*
 
 A MEX-file is a compiled C, C++ or Fortran function (C++ if it uses *DIPlib*) that
 can be called from *MATLAB* as if it were a normal *MATLAB* function. It must take
@@ -29,7 +29,7 @@ It is assumed that the reader is familiar with basic MEX-files (see the
 if not) and basic *DIPlib* (see the \ref index "documentation" if not).
 We exclusively use [the C API](https://www.mathworks.com/help/matlab/cc-mx-matrix-library.html).
 
-\section sec_dum_mex_files_dml The DIPlib-MATLAB interface
+\section sec_dum_mex_files_dml The *DIPlib--MATLAB* interface
 
 The header file \ref "dip_matlab_interface.h" contains a series of functions that can
 be used to convert *MATLAB* types to *DIPlib* types and vice versa. These functions
@@ -126,7 +126,7 @@ as well as the *DIPimage* MEX-files in
 To compile a MEX-file like the one shown in the previous section, save it for example
 as `myfunction.cpp`, and use the `dipmex` function in *MATLAB*:
 
-```m
+```matlab
 dipmex myfunction.cpp
 ```
 
@@ -140,14 +140,14 @@ that you build the library yourself. `mex -setup C++` should be used to configur
 The result of the `dipmex` command above is a MEX-file called `myfunction`. You can
 call it like any other *MATLAB* function:
 
-```m
+```matlab
 img = myfunction;  % it has no input arguments
 ```
 
 If your MEX-file needs more source files and/or libraries, simply add them to the
 `dipmex` command. You can also add [other arguments for `mex`](https://www.mathworks.com/help/matlab/ref/mex.html) here:
 
-```m
+```matlab
 dipmex myfunction.cpp other_source.cpp /home/me/mylibs/libstuff.a -I/home/me/mylibs/
 ```
 

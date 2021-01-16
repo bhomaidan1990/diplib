@@ -1058,14 +1058,14 @@ inline Image ObjectToMeasurement(
 /// names, of which there typically are fewer than columns, are interspersed with empty cells
 /// to line them up with the first column for the feature. For example:
 ///
-/// ```txt
-///    ObjectID, Size,  Center, ,      Feret, ,      ,        ,
-///    ,         ,      dim0,   dim1,  Max,   Min,   PerpMin, MaxAng, MinAng
-///    ,         um^2,  um,     um,    um,    um,    um,      rad,    rad
-///    1,        397.0, 20.06,  12.98, 34.99, 16.43, 34.83,   2.111,  3.588
-///    2,        171.0, 63.13,  4.123, 20.22, 11.00, 20.00,   2.993,  4.712
-///    3,        628.0, 108.4,  12.47, 32.20, 26.00, 28.00,   2.202,  0.000
-///    4,        412.0, 154.5,  9.561, 26.40, 22.00, 23.00,   2.222,  4.712
+/// ```text
+/// ObjectID, Size,  Center, ,      Feret, ,      ,        ,
+/// ,         ,      dim0,   dim1,  Max,   Min,   PerpMin, MaxAng, MinAng
+/// ,         um^2,  um,     um,    um,    um,    um,      rad,    rad
+/// 1,        397.0, 20.06,  12.98, 34.99, 16.43, 34.83,   2.111,  3.588
+/// 2,        171.0, 63.13,  4.123, 20.22, 11.00, 20.00,   2.993,  4.712
+/// 3,        628.0, 108.4,  12.47, 32.20, 26.00, 28.00,   2.202,  0.000
+/// 4,        412.0, 154.5,  9.561, 26.40, 22.00, 23.00,   2.222,  4.712
 /// ```
 ///
 /// \attention The file will not have columns aligned with spaces as shown here, each

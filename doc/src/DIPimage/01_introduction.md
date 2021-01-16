@@ -18,7 +18,7 @@
 
 \page sec_dum_introduction Introduction
 
-\section sec_dum_introduction_the_dipimage_toolbox The DIPimage toolbox
+\section sec_dum_introduction_the_dipimage_toolbox The *DIPimage* toolbox
 
 *MATLAB* is a software package designed for (among other things) data
 processing. It contains a huge amount of numerical algorithms, and very
@@ -40,7 +40,7 @@ though we always prioritize precision over speed. This means that, even though
 this toolbox contains many very efficient algorithms, there might be other
 (non-MATLAB) alternatives to think of if speed is your number one priority.
 
-\section sec_dum_introduction_the_diplib_library The DIPlib library
+\section sec_dum_introduction_the_diplib_library The *DIPlib* library
 
 *DIPlib* is a quantitative image analysis library written in C++. It
 contains a large number of functions for processing and analyzing

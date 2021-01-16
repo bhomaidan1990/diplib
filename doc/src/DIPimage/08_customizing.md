@@ -16,7 +16,7 @@
 \comment limitations under the License.
 
 
-\page sec_dum_customizing Customizing the DIPimage Environment
+\page sec_dum_customizing Customizing the *DIPimage* Environment
 
 \section sec_dum_customizing_figure_windows Figure windows
 
@@ -45,7 +45,7 @@ it executes should be printed to *MATLAB*'s command window. This is useful
 for copying and pasting the command being executed to some script or
 function. It is on by default, and can be switched off by typing
 
-```m
+```matlab
 dipsetpref('PutInCommandWindow','off')
 ```
 
@@ -58,7 +58,7 @@ The function should be defined by itself in a file called `localdipmenus.m` and
 be somewhere on the MATLAB path. See `help addpath` to learn about the MATLAB
 path. `localdipmenus` is defined as follows:
 
-```m
+```matlab
 function [menulist,funclist] = localdipmenus(menulist)
 
 menulist = [menulist;{'My Menu',{'myfunction'}}];
@@ -310,7 +310,7 @@ is a script, not a function, it can initialize some variables if you
 like. It can also be used to position the *DIPimage* GUI to the place of
 your liking:
 
-```m
+```matlab
 set(0,'ShowHiddenHandles','on')
 h = findobj('tag','DIPimage_Main_Window');
 set(h,'Position',[500,600,500,100])

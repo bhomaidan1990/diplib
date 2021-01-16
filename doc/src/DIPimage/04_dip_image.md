@@ -58,7 +58,7 @@ Data type  | Description               | Other allowed names
 
 For example,
 
-```m
+```matlab
 a = dip_image(a,'sfloat');
 ```
 
@@ -75,7 +75,7 @@ convert the `dip_image` object to a *MATLAB* array of the specified class.
 There are also some commands to create an image from scratch. `newim` is
 equivalent to the `zeros` function, but returns a `dip_image` object.
 
-```m
+```matlab
 a = newim(256,256);
 ```
 
@@ -84,7 +84,7 @@ parameter (as in the table above) can be used to specify the
 data type of the new image. The default is `'sfloat'`. If `b` is an
 object of type `dip_image`, then
 
-```m
+```matlab
 a = newim(b);
 ```
 
@@ -94,7 +94,7 @@ create an image containing the coordinates of its pixels, and can be
 used in formulas that need them. For example, `rr([256,256])<64` creates a
 binary image with a disk of radius 64. The expression
 
-```m
+```matlab
 a = (yy('corner'))*sin((xx('corner'))^2/300)
 ```
 
@@ -141,13 +141,13 @@ treat any non-zero value in those images as true and zero as false. For
 example, to do a threshold we do not need a special function, since we
 have the relational operators:
 
-```m
+```matlab
 b = a > 100;
 ```
 
 A double threshold would be (note *MATLAB*'s operator precedence):
 
-```m
+```matlab
 b = a > 50 & a < 200;
 ```
 
@@ -256,7 +256,7 @@ Any numeric type can be assigned into a `dip_image` object, without
 changing the image data type (that is, the element assigned into the
 image is converted to the image data type). For example,
 
-```m
+```matlab
 b(:,0) = 0;
 ```
 
@@ -264,7 +264,7 @@ sets the top row of the image in `b` to 0. Note that indexing
 expressions can become as complicated as you like. For example, to
 sub-sample the image by a factor 3, we could write
 
-```m
+```matlab
 b = b(1:3:end,1:3:end);
 ```
 
@@ -278,14 +278,14 @@ Finally, it is also possible to index using a mask image. Any binary
 image (or logical array) can be used as mask, but it must be of the same
 size as the image into which is being indexed. For example,
 
-```m
+```matlab
 a(m) = 0;
 ```
 
 sets all pixels in `a`, where `m` is one, to zero. A very common
 expression is of the form
 
-```m
+```matlab
 a(a<0) = 0;
 ```
 
@@ -310,7 +310,7 @@ for higher-rank tensor images.
 
 The function `newtensorim` creates a new tensor image filled with zeros:
 
-```m
+```matlab
 A = newtensorim([2,2],[256,256])
 ```
 
@@ -329,7 +329,7 @@ a matrix multiplication between each corresponding pair of pixels. For
 example, the following code applies a matrix multiplication to the
 2-vector image `b`, yielding a 2-by-2 matrix image `c`:
 
-```m
+```matlab
 a = readim('trui');
 b = gradient(a)      % yields a 2-vector
 c = b * b'           % yields a 2-by-2 matrix
@@ -360,7 +360,7 @@ have adopted is to always assume round braces (`()`). Never use `end`
 within curly braces (`{}`). You can use `tensorsize` or `numtensorel`
 to compute indices from the end for tensor indexing:
 
-```m
+```matlab
 a{end};             % doesn't work!
 a{numtensorel(a)};  % returns the last tensor component
 ```
@@ -409,7 +409,7 @@ the tensor image that represents it should have at least two components.
 Use the `colorspace` function to add this color space information to a
 tensor image:
 
-```m
+```matlab
 C = colorspace(A,'RGB')
 ```
 
@@ -429,14 +429,14 @@ color-space-less tensor image, and then to the final color space.
 The function `joinchannels` combines two or more images into a color
 image using the specified color space:
 
-```m
+```matlab
 C = joinchannels('RGB',a,b,c)
 ```
 
 The function `newcolorim` creates a new color image of the given
 color space, filled with zeros:
 
-```m
+```matlab
 C = newcolorim([256,256],'RGB');
 ```
 
@@ -501,7 +501,7 @@ dimensions) would change the pixels accessed at a given linear index, which is
 counter-intuitive. For example, in the following program `a` and `b` are
 different values:
 
-```m
+```matlab
 img = dip_image(rand(10,11,8));
 a = img(200);
 img = reshape(orig,[11,8,10]);
@@ -587,7 +587,7 @@ projection functions all take a mask image as an optional second argument.
 The projection is taken only over those pixels selected by the mask. For
 example,
 
-```m
+```matlab
 mean(a,a>0,1)
 ```
 
@@ -623,7 +623,7 @@ The overloaded method `rotate` has nothing to with *MATLAB*'s `rotate`
 Applied to a 3-vector image, it rotates the vectors around an axis
 given by a second vector image or vector.
 
-\section sec_dum_dip_image_review Review of the differences between a `dip_image` and a MATLAB array
+\section sec_dum_dip_image_review Review of the differences between a `dip_image` and a *MATLAB* array
 
 As we have seen, objects of type `dip_image` have some differences with
 respect of regular *MATLAB* arrays. The main difference is in indexing. We

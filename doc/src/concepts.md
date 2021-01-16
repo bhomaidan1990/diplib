@@ -16,11 +16,9 @@
 \comment limitations under the License.
 
 
-\page concepts Assorted concepts used in DIPlib 3
+\page concepts Assorted concepts used in *DIPlib 3*
 
 This page describes assorted concepts used in *DIPlib 3*.
-
-\tableofcontents
 
 
 \comment --------------------------------------------------------------
@@ -77,18 +75,18 @@ images when the function ends. With the current design of shared pointers
 to the data, this is no longer necessary. Say a function is called with
 
 ```cpp
-    dip::Image A;
-    dip::Filter( A, A, params );
+dip::Image A;
+dip::Filter( A, A, params );
 ```
 
 Then the function `dip::Filter()` does this:
 
 ```cpp
-    void dip::Filter( const dip::Image &in_c, dip::Image &out, ... ) {
-       Image in = in_c.QuickCopy();
-       out.Strip();
-       // do more processing ...
-    }
+void dip::Filter( const dip::Image &in_c, dip::Image &out, ... ) {
+   Image in = in_c.QuickCopy();
+   out.Strip();
+   // do more processing ...
+}
 ```
 
 What happens here is that the new image `in` is a copy of the input image, `A`,
@@ -104,14 +102,14 @@ always test for aliasing of image data, and strip/forge the output image if
 necessary:
 
 ```cpp
-    void dip::Filter( const dip::Image &in_c, dip::Image &out, ... ) {
-       Image in = in_c.QuickCopy();
-       if( in.Aliases( out )) {
-          out.Strip();       // Force out to not point at data we still need
-       }
-       out.ReForge( ... );   // create new data segment for output
-       // do more processing ...
-    }
+void dip::Filter( const dip::Image &in_c, dip::Image &out, ... ) {
+   Image in = in_c.QuickCopy();
+   if( in.Aliases( out )) {
+      out.Strip();       // Force out to not point at data we still need
+   }
+   out.ReForge( ... );   // create new data segment for output
+   // do more processing ...
+}
 ```
 
 Note that the \ref dip::Framework functions take care of this.
@@ -121,18 +119,18 @@ Note that the \ref dip::Framework functions take care of this.
 
 \section coordinates_origin Coordinate system origin
 
-Some functions, such as `dip::FourierTransform`, `dip::Rotation` and
-`dip::AffineTransform`, use a coordinate system where the origin is a pixel
+Some functions, such as \ref dip::FourierTransform, \ref dip::Rotation and
+\ref dip::AffineTransform, use a coordinate system where the origin is a pixel
 in the middle of the image. The indices of this pixel are given by
 `index[ ii ] = img.Size( ii ) / 2`. This pixel is exactly in the middle of the
 image for odd-sized images, and to the right of the exact middle for
 even-sized images.
 
-The function `dip::FillCoordinates` and related functions can be used to
+The function \ref dip::FillCoordinates and related functions can be used to
 obtain the coordinates for each pixel. These all have a `mode` parameter
 that determines which coordinate system to use. The value `"right"` (the
-default) places the origin in the same location as `dip::FourierTransform`,
-`dip::Rotation`, etc.
+default) places the origin in the same location as \ref dip::FourierTransform,
+\ref dip::Rotation, etc.
 
 The function \ref dip::Image::GetCenter (using the default value for its input
 argument) returns the coordinates of the central pixel as a floating-point array.

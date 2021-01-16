@@ -15,7 +15,7 @@
 \comment limitations under the License.
 
 
-\mainpage About DIPlib 3
+\mainpage About *DIPlib 3*
 
 \section main_introduction Introduction
 
@@ -29,30 +29,30 @@ improving *DIPlib*? The short answer is that we believe *DIPlib* offers
 things that are not available elsewhere. The library is built on the
 following three principles:
 
-1. **Precision:**
+1. **Precision**
 
-   We implement the most precise known methods, and output often defaults to
-   floating-point samples. The purpose of these algorithms is quantification,
-   not approximation.
+    We implement the most precise known methods, and output often defaults to
+    floating-point samples. The purpose of these algorithms is quantification,
+    not approximation.
 
 2. **Ease of use**
 
-   We use modern C++ features to provide a simple and intuitive interface
-   to algorithms, with expressive syntax, default values, and little
-   boiler-plate code required from the user. There is no need to be aware of
-   an image's data type to use the algorithms effectively.
+    We use modern C++ features to provide a simple and intuitive interface
+    to algorithms, with expressive syntax, default values, and little
+    boiler-plate code required from the user. There is no need to be aware of
+    an image's data type to use the algorithms effectively.
 
-   Furthermore, developing an image analysis program involves a lot of trial-and-error,
-   rapid prototyping approaches are applicable: the edit-compile-run loop
-   should be quick. We aim for short compile times with pre-compiled algorithms
-   and few public templates.
+    Furthermore, developing an image analysis program involves a lot of trial-and-error,
+    rapid prototyping approaches are applicable: the edit-compile-run loop
+    should be quick. We aim for short compile times with pre-compiled algorithms
+    and few public templates.
 
 3. **Efficiency**
 
-   We implement the most efficient known algorithms, as long as they don't
-   compromise precision. Ease-of-use features might also incur a slight overhead
-   in execution times. The library can be used in high-throughput quantitative analysis
-   pipelines, but is not designed for real-time video processing.
+    We implement the most efficient known algorithms, as long as they don't
+    compromise precision. Ease-of-use features might also incur a slight overhead
+    in execution times. The library can be used in high-throughput quantitative analysis
+    pipelines, but is not designed for real-time video processing.
 
 Algorithms in *DIPlib* typically accept input images of any data type (though,
 of course, some algorithms are specific to binary images, or cannot handle
@@ -78,8 +78,6 @@ various features of the library.
 \section main_modules Modules, interfaces and bindings
 
 Currently, *DIPlib 3* has interfaces or bindings to the following packages:
-
-\m_class{m-spaced-list}
 
 - *MATLAB*: [*DIPimage*](https://diplib.org/DIPimage.html) is a MATLAB
   toolbox that gives access to most functionality in *DIPlib*, but goes beyond

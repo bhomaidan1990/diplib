@@ -31,7 +31,7 @@ some rice grains, then analyze these measurements.
 
 Type the following command at the *MATLAB* prompt:
 
-```m
+```matlab
 dipimage
 ```
 
@@ -60,7 +60,7 @@ then press the "Execute" button. Two things should happen:
 2.  The following lines (or something very similar) appear in the
     command window:
 
-```txt
+```matlabsession
 >> a = readim('c:\dip\share\images\rice.tif','')
 Displayed in figure 1
 ```
@@ -69,7 +69,7 @@ This is to show you that the same would have happened if you would have
 typed that command directly yourself, without using the GUI. Try typing
 this command:
 
-```m
+```matlab
 a = readim('rice')
 ```
 
@@ -85,7 +85,7 @@ current directory or in any of the directories specified by the
 To avoid having the image displayed in a window automatically, add a
 semicolon to the end of the command:
 
-```m
+```matlab
 a = readim('rice');
 ```
 
@@ -104,7 +104,7 @@ Try different settings until you are satisfied with the result.
 Once we have the background image, we can subtract it from the original
 image. It is very easy to do arithmetic with images in *MATLAB*. Type
 
-```m
+```matlab
 a = a - bg
 ```
 
@@ -132,7 +132,7 @@ that distinguishes the grains of rice from the background. To find it,
 we can examine the histogram of the image. Choose "Histogram" on the
 "Statistics" menu, or type
 
-```m
+```matlab
 diphist(a,[])
 ```
 
@@ -141,7 +141,7 @@ Find a value in between for the threshold. To do the segmentation,
 compare all pixel values with the threshold, which can be done in this
 way:
 
-```m
+```matlab
 b = a > 20
 ```
 
@@ -160,7 +160,7 @@ same as the `bpropagation` function, with an empty image as a seed
 image, and the edge condition set to 1. To create an empty seed image
 use the `newim` function. Thus, these two commands are equivalent:
 
-```m
+```matlab
 b = b - bpropagation(newim(b,'bin'),b,0,2,1)
 b = brmedgeobjs(b,2)
 ```
@@ -182,7 +182,7 @@ Now do the measuring. We will measure the object area in pixels
 and smallest diameters, and the diameter perpendicular to the smallest
 diameter.
 
-```m
+```matlab
 data = measure(lab,[],{'Size','Feret'});
 ```
 
@@ -197,7 +197,7 @@ diameters for object number 1.
 To extract the measurements done on all objects and put them in an
 array, type
 
-```m
+```matlab
 feret = data.Feret;
 sz = data.Size;
 ```
@@ -210,7 +210,7 @@ We will use `scatter` to find some correlation between the diameters and
 the area of the grains. Let's start by plotting the length of the grains
 against their width:
 
-```m
+```matlab
 figure;
 scatter(feret(:,1),feret(:,2))
 ```
@@ -218,16 +218,16 @@ scatter(feret(:,1),feret(:,2))
 Apparently, they are mostly unrelated. Let's try a relation between the
 length and the surface area:
 
-```m
+```matlab
 scatter(feret(:,1),sz)
 ```
 
 These appear to be more related, but, of course, the area also depends
 on the width of the grains. If we assume that the grains are elliptic,
-we know that the area is \f$\frac{1}{4}\pi d_1 d_2\f$. Let's plot the
+we know that the area is $\frac{1}{4}\pi d_1 d_2$. Let's plot the
 calculated area against the measured area:
 
-```m
+```matlab
 calc = pi/4 * feret(:,1) .* feret(:,2);
 scatter(sz,calc)
 ```
@@ -236,7 +236,7 @@ Wow! That is a linear relation. We can add a line along the diagonal to
 see how much the ratio differs from 1 (the other commands are to make
 the figure look prettier):
 
-```m
+```matlab
 hold on
 plot([180,360],[180,360],'k--')
 axis equal
@@ -249,7 +249,7 @@ ylabel('\pi{\cdot}a{\cdot}b   (pixels^2)')
 
 The actual slope can be computed by:
 
-```m
+```matlab
 f = sz\calc
 ```
 

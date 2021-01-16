@@ -37,12 +37,12 @@ all the information you can that might help us reproduce the bug, especially the
 \section sec_dum_faq_usage Usage
 
 
-\subsection sec_dum_faq_usage_components In order to make full use of DIPimage, what components of MATLAB are necessary?
+\subsection sec_dum_faq_usage_components In order to make full use of *DIPimage*, what components of *MATLAB* are necessary?
 
 Just *MATLAB* itself. No other toolboxes are required, but of course can be used in conjunction.
 
 
-\subsection sec_dum_faq_usage_version What versions of MATLAB will DIPimage run on?
+\subsection sec_dum_faq_usage_version What versions of *MATLAB* will *DIPimage* run on?
 
 This toolbox requires *MATLAB* R2008a (version 7.6) or later. This is the version that introduced the
 `classdef`-style objects, used in the core types of the toolbox. However, we have tested the toolbox only
@@ -50,7 +50,7 @@ under much newer versions of *MATLAB*, so your mileage may vary. Feel free to op
 with your version of *MATLAB*.
 
 
-\subsection sec_dum_faq_usage_ipt How do I use a DIPimage image object with an Image Processing Toolbox function?
+\subsection sec_dum_faq_usage_ipt How do I use a *DIPimage* image object with an Image Processing Toolbox function?
 
 The function `dip_array(im)` will extract the *MATLAB* array from within the `dip_image` object `im`. No copies will
 initially be made, unless the arrays are modified (read up on
@@ -65,7 +65,7 @@ Yes! Since *DIPimage 3*, the toolbox and the library it is built on are open sou
 [on GitHub](https://github.com/DIPlib/diplib/).
 
 
-\subsection sec_dum_faq_usage_integrate How do I integrate my C or C++ code into DIPimage?
+\subsection sec_dum_faq_usage_integrate How do I integrate my C or C++ code into *DIPimage*?
 
 See the section \ref sec_dum_mex_files.
 

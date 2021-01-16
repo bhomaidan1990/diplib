@@ -16,13 +16,11 @@
 \comment limitations under the License.
 
 
-\page design DIPlib 3 design decisions
+\page design *DIPlib* 3 design decisions
 
 This page gives reasons behind some of the design choices of *DIPlib 3*.
 Many of these decisions are inherited from the previous version of the library,
 and some new ones are made possible by the port to C++.
-
-\tableofcontents
 
 
 \comment --------------------------------------------------------------
@@ -40,16 +38,16 @@ Both of these options have advantages and disadvantages. Style 1 allows for
 in-place operation:
 
 ```cpp
-    dip::Image img = ...
-    Filter( img, img, 1 );
+dip::Image img = ...
+Filter( img, img, 1 );
 ```
 
 The function here is able to write the results in the image's pixel buffer,
 without having to allocate a temporary pixel buffer as would be the case for:
 
 ```cpp
-    dip::Image img = ...
-    img = Filter( img, 1 );
+dip::Image img = ...
+img = Filter( img, 1 );
 ```
 
 This is a huge advantage both in speed and memory usage. However, resulting
@@ -58,8 +56,8 @@ outputs?) and not as pretty as with style 2. For example, style 2 allows
 for a very elegant chaining of operations:
 
 ```cpp
-    dip::Image img = ...
-    img = Filter2( Filter1( img, 3 ), 1 );
+dip::Image img = ...
+img = Filter2( Filter1( img, 3 ), 1 );
 ```
 
 Furthermore, style 2 makes it much easier to automatically generate interfaces
@@ -77,11 +75,11 @@ However, we have written a small, inline wrapper function for most of the image
 filters that follow the signature style 2. Such a wrapper is very straight-forward:
 
 ```cpp
-    inline dip::Image Filter( dip::Image &in, int size ) {
-        dip::Image out;
-        Filter( in, out, size );
-        return out;
-    }
+inline dip::Image Filter( dip::Image &in, int size ) {
+    dip::Image out;
+    Filter( in, out, size );
+    return out;
+}
 ```
 
 We have chosen not to pollute the documentation with these wrapper functions.
@@ -101,9 +99,9 @@ include file for the library changes when adding any type of functionality,
 forcing recompilation of the whole library. Filters should be functions, not
 methods.
 
-In *DIPlib*, methods to the core `dip::Image` class query and manipulate image
-properties, not pixel data (with the exception of `dip::Image::Copy` and
-`dip::Image::Fill`). Filters and other algorithms that manipulate image data are
+In *DIPlib*, methods to the core \ref dip::Image class query and manipulate image
+properties, not pixel data (with the exception of \ref dip::Image::Copy and
+\ref dip::Image::Fill). Filters and other algorithms that manipulate image data are
 always functions or function objects.
 
 We use function objects sparingly in *DIPlib*. *ITK*, for example, has taken
@@ -114,13 +112,13 @@ two code snippets below (function object version is not *ITK* code, but a simpli
 version of that that ignores *ITK*'s templates and processing pipeline):
 
 ```cpp
-    lib::GaussianFilter gauss;
-    gauss.SetInput( image );
-    gauss.SetSigma( FloatArray{ 5, 1 } );
-    gauss.Execute();
-    outim = gauss.GetOutput();
+lib::GaussianFilter gauss;
+gauss.SetInput( image );
+gauss.SetSigma( FloatArray{ 5, 1 } );
+gauss.Execute();
+outim = gauss.GetOutput();
 
-    outim = dip::Gauss( image, FloatArray{ 5, 1 } );
+outim = dip::Gauss( image, FloatArray{ 5, 1 } );
 ```
 
 
@@ -190,15 +188,15 @@ An other advantage is having fewer possibilities for name clashes when defining
 a lot of enumerator constants for the many, many options accumulated of the
 large collection of functions and algorithms in *DIPlib*.
 
-A function that has multiple independent options takes a `dip::StringSet`
+A function that has multiple independent options takes a \ref dip::StringSet
 (a `std::set<std::string>`) as input. The user can simply join strings using
 curly braces, much like in *MATLAB*. The algorithm can easily check if a
 specific string is given or not.
 
 However, for infrastructure functions not typically exposed in interfaces (i.e.
 the functions that *DIPlib* uses internally to do its work) we do define
-numeric constants for options. For example, see the enumerator `dip::Option::ThrowException`,
-or any of the flags defined through `DIP_DECLARE_OPTIONS`. These are more efficient
+numeric constants for options. For example, see the enumerator \ref dip::Option::ThrowException,
+or any of the flags defined through \ref DIP_DECLARE_OPTIONS. These are more efficient
 in use and equally convenient if limited to the C++ code.
 
 
@@ -210,11 +208,11 @@ When an image object is marked `const`, the compiler will prevent modifications
 to it, it cannot be assigned to, and it cannot be used as the output argument
 to a filter function. However, it is possible to create a non-`const` image that
 points to the same data segment as a `const` image. The assignment operator, the
-`dip::Image::QuickCopy` method, and most indexing operations will do this.
+\ref dip::Image::QuickCopy method, and most indexing operations will do this.
 There were two important reasons for this design decision:
 
 1. Making a `const` and a non-`const` version of most of these indexing
-   operators is possible, but some are functions (such as `dip::DefineROI`) taking
+   operators is possible, but some are functions (such as \ref dip::DefineROI) taking
    an output image object as function argument. This argument cannot be marked
    `const` because the function needs to modify it. However, the function must
    assign the data pointer from a `const` image into it.
@@ -231,8 +229,8 @@ images would make it impossible to write certain types of functions, and would m
 other types of functions much more complicated.
 
 Because a copy of a `const` image can provide non-`const` access to its pixels, we felt
-that it did not really make sense either to have the `dip::Image::Data`,
-`dip::Image::Origin`, and `dip::Image::Pointer`
+that it did not really make sense either to have the \ref dip::Image::Data,
+\ref dip::Image::Origin, and \ref dip::Image::Pointer
 methods return `const` pointers when applied to a `const` image. That is, all accesses
 to pixel data ignore the constness of the image object. The constness of the image
 object applies only to the image's properties (size, strides, tensor shape, color space,
@@ -242,11 +240,11 @@ However, none of the functions in *DIPlib* will modify pixel values of a `const`
 Input images to functions are always `const` references, and even though it would be
 technically possible to modify its pixel values, we have an explicit policy to not do so.
 
-The same applies to the `dip::Measurement` object, but for a different reason:
+The same applies to the \ref dip::Measurement object, but for a different reason:
 Implementing correct handling of `const` objects would require two versions of all
 iterators (a `const` one and a non-`const` one). Since these iterators are quite complex,
 and the benefit of correct `const` handling is limited, we decided to follow the same
-principle as with the `dip::Image` object: non-`const` data access is always allowed, but
+principle as with the \ref dip::Image object: non-`const` data access is always allowed, but
 *DIPlib* has an explicit policy to not to change data of a `const` object.
 
 
@@ -303,9 +301,9 @@ for us to choose the approach we chose.
 
 We use *OpenMP* for multithreading, mostly because it seems (to me) easier to use
 than Intel's *Threading Building Blocks* (*TBB*). *TBB* does not require special
-compiler support, but all modern compilers support *OpenMP* (except for XCode's CLang
-on MacOS, even though it's possible to get a version of CLang that does). The
-GNU Compiler Collection has very good support for *OpenMP*, and is available on
+compiler support, but all modern compilers support *OpenMP* (except that XCode's CLang
+on MacOS doesn't come with the *OpenMP* library, which needs to be installed separately).
+The GNU Compiler Collection has very good support for *OpenMP*, and is available on
 all platforms. *TBB* probably also plays better with C++ code than *OpenMP*, which
 does not allow exceptions to be thrown across parallel construct boundaries. But
 we're dealing only (so far) with trivially parallelizable code, so this is not

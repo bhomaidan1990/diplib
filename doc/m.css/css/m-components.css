@@ -48,9 +48,11 @@ h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5em;
+  color: var(--cs-secondary-base)
 }
 h3 {
   margin-top: 1rem;
+  color: var(--cs-secondary-darker)
 }
 h3, h4 {
   font-size: 1.17em;
@@ -69,9 +71,6 @@ p, ul, ol, dl {
 }
 ul, ol {
   padding-left: 2rem;
-}
-ul ol, ul ul, ol ol, ol ul {
-  margin-bottom: 0;
 }
 main p {
   text-indent: var(--paragraph-indent);
@@ -418,7 +417,7 @@ table.m-table th, table.m-table td {
   vertical-align: top;
   border-style: solid;
   border-width: 0;
-  border-color: var(--link-active-color);
+  border-color: var(--line-color);
   padding: 0.1rem 0.3rem;
 }
 table.m-first-tight td:first-child {
@@ -935,7 +934,7 @@ figure.m-figure figcaption a, .m-code-figure figcaption a, .m-console-figure fig
 }
 
 /* Code block (uses Pygments CSS classes) */
-pre.m-code span.hll {
+pre.m-code span.hll, div.m-code > span.hll {
   margin-left: -1.0rem;
   margin-right: -1.0rem;
   padding-left: 1.0rem;
@@ -1665,34 +1664,23 @@ div.m-plot svg .m-bar.m-dim,
   stroke: var(--dim-color);
 }
 
-/* Spacing after every block element, but not after the last and not when
-   m-nopadb is specified. It's div.m-math and div.m-graph instead of .m-math and
-   .m-graph because math / graph figures are handled already with
-   figure.m-figure. */
+/* Spacing after every block element, but not when m-nopadb is specified.
+   It's div.m-math and div.m-graph instead of .m-math and .m-graph because
+   math / graph figures are handled already with figure.m-figure. */
 p, ul, ol, dl, blockquote, pre, .m-code-figure, .m-console-figure, hr, .m-note,
 .m-frame, .m-block, div.m-button, div.m-scroll, table.m-table, div.m-image,
 img.m-image, svg.m-image, figure.m-figure, .m-imagegrid, div.m-math,
-div.m-graph, div.m-plot {
+div.m-graph, div.m-plot, div.m-code {
   margin-bottom: 1rem;
 }
-p:last-child, p.m-nopadb, ul:last-child, ul.m-nopadb,
-ol:last-child, ol.m-nopadb, dl:last-child, dl.m-nopadb,
-blockquote:last-child, blockquote.m-nopadb, pre:last-child, pre.m-nopadb,
-.m-code-figure:last-child, .m-code-figure.m-nopadb,
-.m-console-figure:last-child, .m-console-figure.m-nopadb,
-hr:last-child, hr.m-nopadb, .m-note:last-child, .m-note.m-nopadb,
-.m-frame:last-child, .m-frame.m-nopadb, .m-block:last-child, .m-block.m-nopadb,
-div.m-button:last-child, div.m-button.m-nopadb,
-div.m-scroll:last-child, div.m-scroll.m-nopadb,
-table.m-table:last-child, table.m-table.m-nopadb,
-img.m-image:last-child, img.m-image.m-nopadb,
-svg.m-image:last-child, svg.m-image.m-nopadb,
-div.m-image:last-child, div.m-image.m-nopadb,
-figure.m-figure:last-child, figure.m-figure.m-nopadb,
-.m-imagegrid:last-child, .m-imagegrid.m-nopadb,
-div.m-math:last-child, div.m-math.m-nopadb,
-div.m-graph:last-child, div.m-graph.m-nopadb,
-div.m-plot:last-child, div.m-plot.m-nopadb {
+p.m-nopadb, ul.m-nopadb, ol.m-nopadb, dl.m-nopadb, blockquote.m-nopadb,
+pre.m-nopadb, .m-code-figure.m-nopadb, .m-console-figure.m-nopadb,
+hr.m-nopadb, .m-note.m-nopadb, .m-frame.m-nopadb, .m-block.m-nopadb,
+div.m-button.m-nopadb, div.m-scroll.m-nopadb, table.m-table.m-nopadb,
+img.m-image.m-nopadb, svg.m-image.m-nopadb, div.m-image.m-nopadb,
+figure.m-figure.m-nopadb, .m-imagegrid.m-nopadb, div.m-math.m-nopadb,
+div.m-graph.m-nopadb, div.m-plot.m-nopadb, div.m-code.m-nopadb,
+aside :last-child {
   margin-bottom: 0;
 }
 

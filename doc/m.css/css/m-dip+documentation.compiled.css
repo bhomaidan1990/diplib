@@ -364,9 +364,11 @@ h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5em;
+  color: #00b3b3
 }
 h3 {
   margin-top: 1rem;
+  color: #1d7373
 }
 h3, h4 {
   font-size: 1.17em;
@@ -385,9 +387,6 @@ p, ul, ol, dl {
 }
 ul, ol {
   padding-left: 2rem;
-}
-ul ol, ul ul, ol ol, ol ul {
-  margin-bottom: 0;
 }
 main p {
   text-indent: 0;
@@ -435,7 +434,7 @@ a.m-flat {
   text-decoration: none;
 }
 a:hover, a:focus, a:active {
-  color: #bf7130;
+  color: #00b3b3;
 }
 a img { border: 0; }
 svg a { cursor: pointer; }
@@ -704,7 +703,7 @@ table.m-table th, table.m-table td {
   vertical-align: top;
   border-style: solid;
   border-width: 0;
-  border-color: #bf7130;
+  border-color: #ff7400;
   padding: 0.1rem 0.3rem;
 }
 table.m-first-tight td:first-child {
@@ -1184,7 +1183,7 @@ figure.m-figure figcaption a, .m-code-figure figcaption a, .m-console-figure fig
     margin-right: -10%;
   }
 }
-pre.m-code span.hll {
+pre.m-code span.hll, div.m-code > span.hll {
   margin-left: -1.0rem;
   margin-right: -1.0rem;
   padding-left: 1.0rem;
@@ -1223,7 +1222,7 @@ div.m-button a svg.m-math { fill: #ffffff; }
 div.m-button.m-flat a svg.m-math { fill: #000000; }
 div.m-button.m-flat a:hover svg.m-math, div.m-button.m-default a:focus svg.m-math,
 div.m-button.m-default a:active svg.m-math {
-  fill: #bf7130;
+  fill: #00b3b3;
 }
 .m-graph { font-size: 13px; }
 div.m-plot svg, div.m-graph svg {
@@ -1362,7 +1361,7 @@ div.m-button a, .m-label {
 }
 div.m-button.m-flat a { color: #000000; }
 div.m-button.m-flat a:hover, div.m-button.m-default a:focus, div.m-button.m-default a:active {
-  color: #bf7130;
+  color: #00b3b3;
 }
 div.m-button.m-default a, .m-label:not(.m-flat).m-default { background-color: #000000; }
 div.m-button.m-primary a, .m-label:not(.m-flat).m-primary { background-color: #ff7400; }
@@ -1867,27 +1866,17 @@ div.m-plot svg .m-bar.m-dim,
 p, ul, ol, dl, blockquote, pre, .m-code-figure, .m-console-figure, hr, .m-note,
 .m-frame, .m-block, div.m-button, div.m-scroll, table.m-table, div.m-image,
 img.m-image, svg.m-image, figure.m-figure, .m-imagegrid, div.m-math,
-div.m-graph, div.m-plot {
+div.m-graph, div.m-plot, div.m-code {
   margin-bottom: 1rem;
 }
-p:last-child, p.m-nopadb, ul:last-child, ul.m-nopadb,
-ol:last-child, ol.m-nopadb, dl:last-child, dl.m-nopadb,
-blockquote:last-child, blockquote.m-nopadb, pre:last-child, pre.m-nopadb,
-.m-code-figure:last-child, .m-code-figure.m-nopadb,
-.m-console-figure:last-child, .m-console-figure.m-nopadb,
-hr:last-child, hr.m-nopadb, .m-note:last-child, .m-note.m-nopadb,
-.m-frame:last-child, .m-frame.m-nopadb, .m-block:last-child, .m-block.m-nopadb,
-div.m-button:last-child, div.m-button.m-nopadb,
-div.m-scroll:last-child, div.m-scroll.m-nopadb,
-table.m-table:last-child, table.m-table.m-nopadb,
-img.m-image:last-child, img.m-image.m-nopadb,
-svg.m-image:last-child, svg.m-image.m-nopadb,
-div.m-image:last-child, div.m-image.m-nopadb,
-figure.m-figure:last-child, figure.m-figure.m-nopadb,
-.m-imagegrid:last-child, .m-imagegrid.m-nopadb,
-div.m-math:last-child, div.m-math.m-nopadb,
-div.m-graph:last-child, div.m-graph.m-nopadb,
-div.m-plot:last-child, div.m-plot.m-nopadb {
+p.m-nopadb, ul.m-nopadb, ol.m-nopadb, dl.m-nopadb, blockquote.m-nopadb,
+pre.m-nopadb, .m-code-figure.m-nopadb, .m-console-figure.m-nopadb,
+hr.m-nopadb, .m-note.m-nopadb, .m-frame.m-nopadb, .m-block.m-nopadb,
+div.m-button.m-nopadb, div.m-scroll.m-nopadb, table.m-table.m-nopadb,
+img.m-image.m-nopadb, svg.m-image.m-nopadb, div.m-image.m-nopadb,
+figure.m-figure.m-nopadb, .m-imagegrid.m-nopadb, div.m-math.m-nopadb,
+div.m-graph.m-nopadb, div.m-plot.m-nopadb, div.m-code.m-nopadb,
+aside :last-child {
   margin-bottom: 0;
 }
 li > p:last-child, li > blockquote:last-child, li > pre:last-child,
@@ -2040,7 +2029,7 @@ body > header > nav #m-navbar-collapse li a:hover,
 body > header > nav #m-navbar-collapse li a:focus,
 body > header > nav #m-navbar-collapse li a:active {
   border-color: #59d9d9;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #ffffff;
 }
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:hover,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:hover,
@@ -2048,7 +2037,7 @@ body > header > nav.m-navbar-landing #m-navbar-collapse li a:focus,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:focus,
 body > header > nav.m-navbar-landing #m-navbar-collapse li a:active,
 body > header > nav.m-navbar-cover #m-navbar-collapse li a:active {
-  background-color: var(--header-link-active-background-color-semi);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 body > header > nav #m-navbar-hide {
   display: none;
@@ -2698,6 +2687,9 @@ article:last-child, article section:last-child { margin-bottom: 0; }
 .m-code .vi { color: #1616e6 }
 .m-code .vm { color: #1616e6 }
 .m-code .il { color: #1616e6 }
+.m-code .go { color: #666666 }
+.m-code .gp { color: #999999; font-weight: bold }
+.m-code .w { color: #999999 }
 
 a.m-doc, a.m-doc-self, a.m-doc-external,
 ul.m-doc li.m-doc-expansible > a:first-child, ul.m-doc li.m-doc-collapsible > a:first-child,
@@ -2732,7 +2724,7 @@ ul.m-doc li.m-doc-expansible > a:first-child:active::before,
 ul.m-doc li.m-doc-collapsible > a:first-child:hover::before,
 ul.m-doc li.m-doc-collapsible > a:first-child:focus::before,
 ul.m-doc li.m-doc-collapsible > a:first-child:active::before {
-  color: #a64b00;
+  color: #1d7373;
 }
 h3 a.m-doc-external {
   font-weight: normal;
@@ -2862,6 +2854,7 @@ article section.m-doc-details > div > h3:first-child {
   position: relative;
   margin: -1rem -1rem 1rem -1rem;
   padding: 0.5rem 1rem;
+  color: #000000;
   background-color: #ffa866;
   border-radius: 0.2rem;
 }
@@ -2900,7 +2893,7 @@ article section.m-doc-details:target > div {
   padding-left: 0.75rem;
 }
 .m-container-inflatable section.m-doc-details:target > div::before,
-.m-container-inflatable section-dox-details:target section > div.m::before {
+.m-container-inflatable section.m-doc-details:target section > div.m::before {
   border-left-width: 0.25rem;
   border-left-color: #ff7400;
 }

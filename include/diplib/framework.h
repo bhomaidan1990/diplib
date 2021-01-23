@@ -39,10 +39,6 @@ namespace dip {
 class DIP_NO_EXPORT PixelTableOffsets;
 
 
-/// \brief Frameworks are the basis of most pixel-based processing in *DIPlib*.
-namespace Framework {
-
-
 /// \group frameworks Frameworks
 /// \ingroup infrastructure
 /// \brief Functions that form the basis of most pixel-based processing in *DIPlib*.
@@ -61,6 +57,10 @@ namespace Framework {
 ///  - The Separable framework, to apply separable filters: `dip::Framework::Separable`.
 ///  - The Full framework, to apply non-separable filters: `dip::Framework::Full`.
 /// \addtogroup
+
+
+/// \brief Frameworks are the basis of most pixel-based processing in *DIPlib*.
+namespace Framework {
 
 
 // Maximum number of pixels in a buffer for the scan framework

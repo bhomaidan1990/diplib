@@ -517,11 +517,17 @@ with only those pixels.
 The following table summarizes the various indexing types discussed in detail in this
 section.
 
+<div markdown="1" class="m-smaller-font m-spaced m-block m-flat">
+\comment .m-block.m-flat means that this div will not be framed (flat) but will have a margin at the bottom.
+\comment The table, being the last child of the div, will not have a margin at the bottom, and we want some separation there.
+
 &nbsp;                           | Single pixel                                       | Tensor                                                                                                                              | Regular                                          | Mask image          | Set of pixels
 ---------------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|------------------------
 Syntax                           | `.At(dip::uint, ...)`<br>`.At(dip::UnsignedArray)` | `[dip::uint]`<br>`[dip::UnsignedArray]`<br>`[dip::Range]`<br>`.Diagonal()`<br>`.TensorRow(dip::uint)`<br>`.TensorColumn(dip::uint)` | `.At(dip::Range, ...)`<br>`.At(dip::RangeArray)` | `.At(dip::Image)`   | `.At(dip::CoordinateArray)`<br>`.AtIndices(dip::UnsignedArray)`
 Output                           | `dip::Image::Pixel`                                | `dip::Image::View`                                                                                                                  | `dip::Image::View`                               | `dip::Image::View`  | `dip::Image::View`
 Implicitly casts to `dip::Image` | No                                                 | Yes, with shared data                                                                                                               | Yes, with shared data                            | Yes, with data copy | Yes, with data copy
+
+</div>
 
 !!! attention
     The result of an indexing operation can be used as input image to functions, but

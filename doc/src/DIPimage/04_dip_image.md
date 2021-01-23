@@ -181,22 +181,21 @@ there are some other functions that are only defined for objects of type
 functions. That section also lists some functions that behave
 differently than usual when applied to images.
 
-Arithmetic functions defined for objects of type `dip_image` (image in, image out) |||||
-------- | --------- | ---------- | --------- | ---------- | ------------
-`abs`   | `acos`    | `and`, `&` | `angle`   | `asin`     | `atan`
-`atan2` | `besselj` | `ceil`     | `complex` | `conj`     | `cos`
-`erf`   | `exp`     | `fix`      | `floor`   | `hypot`    | `imag`
-`log`   | `log10`   | `log2`     | `mod`     | `not`, `~` |  `or`, `|`
-`phase` | `pow10`   | `pow2`     | `real`    | `round`    | `sign`
-`sin`   | `sqrt`    | `tan`      | `xor`     | `-`        | `+`
-`*`     | `.*`      | `./`       | `/`       | `\^`       | `.^`
-`==`    | `~=`      | `>`        | `>=`      | `<`        | `<=`
+| Arithmetic functions defined for objects of type `dip_image` (image in, image out) { colspan="6" } ||||||
+| ------- | --------- | ---------- | --------- | ---------- | ---------- |
+| `abs`   | `acos`    | `and`, `&` | `angle`   | `asin`     | `atan`     |
+| `atan2` | `besselj` | `ceil`     | `complex` | `conj`     | `cos`      |
+| `erf`   | `exp`     | `fix`      | `floor`   | `hypot`    | `imag`     |
+| `log`   | `log10`   | `log2`     | `mod`     | `not`, `~` |  `or`, `|` |
+| `phase` | `pow10`   | `pow2`     | `real`    | `round`    | `sign`     |
+| `sin`   | `sqrt`    | `tan`      | `xor`     | `-`        | `+`        |
+| `*`     | `.*`      | `./`       | `/`       | `\^`       | `.^`       |
+| `==`    | `~=`      | `>`        | `>=`      | `<`        | `<=`       |
 
-
-Arithmetic functions defined for objects of type `dip_image` (image in, scalar out) |||||
------------- | ------ | ----- | ------ | -------- | ---------
-`all`        | `any`  | `max` | `mean` | `median` | `min`
-`percentile` | `prod` | `std` | `sum`  | `var`    |
+| Arithmetic functions defined for objects of type `dip_image` (image in, scalar out) { colspan="6" } ||||||
+| ------------ | ------ | ----- | ------ | -------- | --------- |
+| `all`        | `any`  | `max` | `mean` | `median` | `min`     |
+| `percentile` | `prod` | `std` | `sum`  | `var`    |           |
 
 \section sec_dum_dip_image_dimensions Dimensions
 
@@ -394,11 +393,11 @@ a *MATLAB* array with the tensor values at the first pixel.
 Functions defined specifically for tensor images are summarized in the
 following table. See \ref sec_dum_dip_image_overloaded.
 
-Functions defined for tensor images |||||
-------- | ------- | ----- | ------ | ------------ | ---------- 
-`cross` | `curl`  | `det` | `diag` | `divergence` | `dot`
-`eig`   | `eye`   | `inv` | `norm` | `pinv`       | `rotate`
-`svd`   | `trace` | `*`   | `.'`   | `'`          |
+| Functions defined for tensor images  { colspan="6" }    ||||||
+| ------- | ------- | ----- | ------ | ------------ | -------- |
+| `cross` | `curl`  | `det` | `diag` | `divergence` | `dot`    |
+| `eig`   | `eye`   | `inv` | `norm` | `pinv`       | `rotate` |
+| `svd`   | `trace` | `*`   | `.'`   | `'`          |          |
 
 \section sec_dum_dip_image_color Color images
 
@@ -453,11 +452,11 @@ Functions used in *MATLAB* to manipulate array dimensions have been
 overloaded to do the same thing with images. They are listed in
 the table below.
 
-Dimension manipulation functions defined for objects of type `dip_image` |||||
---------- | ----------------- | ----------------- | --------- | ---------- | -----------
-`cat`     | `circshift`       | `expanddim`       | `flipdim` | `fliplr`   | `flipud`
-`permute` | `repmat`          | `reshape`         | `rot90`   | `shiftdim` | `squeeze`
-`swapdim` | `tensortospatial` | `spatialtotensor` |           |            |
+| Dimension manipulation functions defined for objects of type `dip_image` { colspan="6" } ||||||
+| --------- | ----------------- | ----------------- | --------- | ---------- | --------- |
+| `cat`     | `circshift`       | `expanddim`       | `flipdim` | `fliplr`   | `flipud`  |
+| `permute` | `repmat`          | `reshape`         | `rot90`   | `shiftdim` | `squeeze` |
+| `swapdim` | `tensortospatial` | `spatialtotensor` |           |            |           |
 
 A few of these functions are unique to `dip_image` objects.
 The function `expanddim` adds trailing singleton dimensions, and `swapdim`

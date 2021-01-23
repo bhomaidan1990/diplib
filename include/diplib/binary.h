@@ -612,6 +612,9 @@ inline Image GetBranchPixels(
 // be devised. But they are general and allow for complicated binary filters to be built.
 
 class DIP_NO_EXPORT Interval;
+
+/// \brief An array of intervals.
+/// \relates dip::Interval
 using IntervalArray = std::vector< Interval >;
 
 /// \brief Represents the shape of an interval for inf-generating and sup-generating operators.

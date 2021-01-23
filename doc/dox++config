@@ -21,12 +21,13 @@ formatting = readable
 [project]
 name = DIPlib
 brief = a library for quantitative image analysis
-url = 
+url = https://diplib.org
 logo = 
 
 [html]
 output directory = html
-document private members = yes
+document private virtual members = yes
+document private non-virtual members = yes
 document protected members = yes
 document undocumented members = no
 modify include statement = def modify_include_statement(id): return 'file--diplib-h' if id.startswith('file--diplib--library--') else id
@@ -34,8 +35,22 @@ theme color = #22272e
 favicon = DIP_logo_32.png
 stylesheets = https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700,700i%7CSource+Code+Pro:400,400i,600
               m.css/css/m-dip+documentation.compiled.css
-templates = 
+# templates =
+# documentation link class = m-doc
 extra files = 
 html header = 
 page header = 
 fine print = [default]
+navigation bar 1 = [('', '#pages', []),('', '#modules', []),('', '#namespaces', [])]
+navigation bar 2 = [('', '#classes', []),('', '#files', [])]
+file index expand levels = 1
+class index expand levels = 1
+class index expand inner = no
+
+[search]
+enable = yes
+download binary = no
+base url = https://diplib.org/diplib-docs/
+external url = https://google.com/search?q=site:diplib.org+{query}
+add snake case suffixes = yes
+add camel case suffixes = yes

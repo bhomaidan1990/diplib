@@ -41,7 +41,7 @@ After entering the name (let's assume we use the default "macro.m"),
 this file will be created (or appended to if it already exists), and
 loaded in the editor.
 
-!!! par ""
+!!! attention ""
     *MATLAB* will ask if it is OK to overwrite the file, don't worry,
     the file will not be overwritten but appended to.
 

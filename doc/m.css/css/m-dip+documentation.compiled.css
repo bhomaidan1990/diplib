@@ -23,6 +23,7 @@
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.
 */
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700,700i%7CSource+Code+Pro:400,400i,600');
 .m-smaller-font{
   font-size: 75%;
 }
@@ -364,11 +365,11 @@ h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5em;
-  color: #00b3b3
+  color: #ff7400
 }
 h3 {
   margin-top: 1rem;
-  color: #1d7373
+  color: #bf7130
 }
 h3, h4 {
   font-size: 1.17em;
@@ -377,7 +378,7 @@ h3, h4, h5, h6, p {
   margin-bottom: 0.5rem;
 }
 h5, h6 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 h4, h5 {
   font-style: italic;
@@ -704,7 +705,10 @@ table.m-table th, table.m-table td {
   border-style: solid;
   border-width: 0;
   border-color: #ff7400;
-  padding: 0.1rem 0.3rem;
+  padding: 0.1rem 0.6rem;
+}
+.m-spaced table.m-table td {
+  padding-bottom: 0.5rem;
 }
 table.m-first-tight td:first-child {
   width: 1%;
@@ -1391,11 +1395,16 @@ div.m-button.m-info a:hover, div.m-button.m-info a:focus, div.m-button.m-info a:
 div.m-button.m-dim a:hover, div.m-button.m-dim a:focus, div.m-button.m-dim a:active {
   background-color: #c0c0c0;
 }
-.m-note.m-default { background-color: #ffe3cc; }
 .m-note.m-default,
 table.m-table tr.m-default td, table.m-table td.m-default,
 table.m-table tr.m-default th, table.m-table th.m-default {
+  background-color: #ffe3cc;
   color: #000000;
+}
+.m-note.m-default a,
+table.m-table tr.m-default td a, table.m-table td.m-default a,
+table.m-table tr.m-default th a, table.m-table th.m-default a {
+  color: #bf7130;
 }
 .m-note.m-default a:hover,
 table.m-table tr.m-default td a:hover, table.m-table td.m-default a:hover,
@@ -1414,11 +1423,6 @@ table.m-table td.m-default pre, table.m-table td.m-default code,
 table.m-table th.m-default pre, table.m-table th.m-default code {
   background-color: #ffe3cc;
   color: #a64b00;
-}
-.m-note.m-primary a,
-table.m-table tr.m-primary td a, table.m-table td.m-primary a,
-table.m-table tr.m-primary th a, table.m-table th.m-primary a {
-  color: #ffe3cc;
 }
 .m-note.m-primary,
 table.m-table tr.m-primary td, table.m-table td.m-primary,
@@ -1869,14 +1873,25 @@ img.m-image, svg.m-image, figure.m-figure, .m-imagegrid, div.m-math,
 div.m-graph, div.m-plot, div.m-code {
   margin-bottom: 1rem;
 }
-p.m-nopadb, ul.m-nopadb, ol.m-nopadb, dl.m-nopadb, blockquote.m-nopadb,
-pre.m-nopadb, .m-code-figure.m-nopadb, .m-console-figure.m-nopadb,
-hr.m-nopadb, .m-note.m-nopadb, .m-frame.m-nopadb, .m-block.m-nopadb,
-div.m-button.m-nopadb, div.m-scroll.m-nopadb, table.m-table.m-nopadb,
-img.m-image.m-nopadb, svg.m-image.m-nopadb, div.m-image.m-nopadb,
-figure.m-figure.m-nopadb, .m-imagegrid.m-nopadb, div.m-math.m-nopadb,
-div.m-graph.m-nopadb, div.m-plot.m-nopadb, div.m-code.m-nopadb,
-aside :last-child {
+p:last-child, p.m-nopadb, ul:last-child, ul.m-nopadb,
+ol:last-child, ol.m-nopadb, dl:last-child, dl.m-nopadb,
+blockquote:last-child, blockquote.m-nopadb, pre:last-child, pre.m-nopadb,
+.m-code-figure:last-child, .m-code-figure.m-nopadb,
+.m-console-figure:last-child, .m-console-figure.m-nopadb,
+hr:last-child, hr.m-nopadb, .m-note:last-child, .m-note.m-nopadb,
+.m-frame:last-child, .m-frame.m-nopadb, .m-block:last-child, .m-block.m-nopadb,
+div.m-button:last-child, div.m-button.m-nopadb,
+div.m-scroll:last-child, div.m-scroll.m-nopadb,
+table.m-table:last-child, table.m-table.m-nopadb,
+img.m-image:last-child, img.m-image.m-nopadb,
+svg.m-image:last-child, svg.m-image.m-nopadb,
+div.m-image:last-child, div.m-image.m-nopadb,
+figure.m-figure:last-child, figure.m-figure.m-nopadb,
+.m-imagegrid:last-child, .m-imagegrid.m-nopadb,
+div.m-math:last-child, div.m-math.m-nopadb,
+div.m-graph:last-child, div.m-graph.m-nopadb,
+div.m-plot:last-child, div.m-plot.m-nopadb,
+div.m-code:last-child, div.m-plot.m-nopadb {
   margin-bottom: 0;
 }
 li > p:last-child, li > blockquote:last-child, li > pre:last-child,
@@ -1885,7 +1900,8 @@ li > .m-note:last-child, li > .m-frame:last-child, li > .m-block:last-child,
 li > div.m-button:last-child, li > div.m-scroll:last-child, li > table.m-table:last-child,
 li > img.m-image:last-child, li > svg.m-image:last-child, li > div.m-image:last-child,
 li > figure.m-figure:last-child, li > div.m-math:last-child,
-li > div.m-graph:last-child, li > div.m-plot:last-child {
+li > div.m-graph:last-child, li > div.m-plot:last-child,
+li > div.m-code:last-child {
   margin-bottom: 1rem;
 }
 li:last-child > p:last-child, li:last-child > p.m-nopadb,
@@ -1905,11 +1921,9 @@ li:last-child > div.m-image:last-child, li:last-child > div.m-image.m-nopadb,
 li:last-child > figure.m-figure:last-child, li:last-child > figure.m-figure.m-nopadb,
 li:last-child > div.m-math:last-child, li:last-child > div.m-math.m-nopadb,
 li:last-child > div.m-graph:last-child, li:last-child > div.m-graph.m-nopadb,
-li:last-child > div.m-plot:last-child, li:last-child > div.m-plot.m-nopadb {
+li:last-child > div.m-plot:last-child, li:last-child > div.m-plot.m-nopadb,
+li:last-child > div.m-code:last-child, li:last-child > div.m-code.m-nopadb {
   margin-bottom: 0;
-}
-ul.m-spaced-list > li, ol.m-spaced-list > li {
-  margin-bottom: 1rem;
 }
 
 body > header > nav {
@@ -2160,20 +2174,10 @@ article > header h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
-article h1 a, article > header h1, article > header h1 a,
-article section > h2, article section > h2 a,
-article section > h3, article section > h3 a,
-article section > h4, article section > h4 a,
-article section > h5, article section > h5 a,
-article section > h6, article section > h6 a {
+article h1 a, article > header h1, article > header h1 a {
   color: #ff7400;
 }
-article h1 a:hover, article > header h1 a:hover, article > header h1 a:focus, article > header h1 a:active,
-article section > h2 a:hover, article section > h2 a:focus, article section > h2 a:active,
-article section > h3 a:hover, article section > h3 a:focus, article section > h3 a:active,
-article section > h4 a:hover, article section > h4 a:focus, article section > h4 a:active,
-article section > h5 a:hover, article section > h5 a:focus, article section > h5 a:active,
-article section > h6 a:hover, article section > h6 a:focus, article section > h6 a:active {
+article h1 a:hover, article > header h1 a:hover, article > header h1 a:focus, article > header h1 a:active {
   color: #bf7130;
 }
 article > header .m-date {
@@ -2788,7 +2792,7 @@ ul.m-doc li.m-doc-expansible > a:first-child:before, ul.m-doc li.m-doc-collapsib
 ul.m-doc li.m-doc-expansible > a:first-child:before { content: '⊕'; }
 ul.m-doc li.m-doc-collapsible > a:first-child:before { content: '⊖'; }
 h1 .m-doc-template, h1 .m-doc-include {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: normal;
 }
 h1 .m-doc-include:last-child {
@@ -2979,6 +2983,9 @@ a.m-doc-search-icon:focus svg, a.m-doc-search-icon:hover svg, a.m-doc-search-ico
 .m-doc-search ul#search-results li a > div {
   white-space: nowrap;
   overflow: hidden;
+}
+.m-doc-search ul#search-results li a > div:not(.m-doc-search-alias) {
+  direction: rtl;
 }
 .m-doc-search ul#search-results li a .m-label {
   float: right;
